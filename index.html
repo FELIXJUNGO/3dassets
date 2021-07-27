@@ -13,7 +13,7 @@
     model-viewer {
         width: 100%;
         height: 100%;
-        --poster-color: green;
+        --poster-color: grey;
         scroll-behavior: unset;
     }
 
@@ -45,9 +45,10 @@
 <body>
 
 
-    <model-viewer camera-controls camera-orbit="45deg 55deg 3.5m" src=" assets/vase_e_2.glb"
-        alt="Kueng Caputo 3d Model ©" ar ios-src="assets/KC_Vase_1.usdz" ar ar-modes="webxr scene-viewer quick-look"
-        loading="eager" skybox-image="assets/skybox/checker2.jpg" environment-image="assets/skybox/checker2.hdr">
+    <model-viewer camera-controls camera-orbit="calc(30deg - env(window-scroll-y) * 60deg) 75deg 1.5m"
+        src=" assets/vase_e_2.glb" alt="Kueng Caputo 3d Model ©" ar ios-src="assets/KC_Vase_1.usdz" ar
+        ar-modes="webxr scene-viewer quick-look" exposure="3" loading="eager" skybox-image="assets/skybox/checker11.jpg"
+        environment-image="assets/skybox/checker5.hdr">
 
 
         <button slot="ar-button" class="arButton">
