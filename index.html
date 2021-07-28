@@ -44,11 +44,31 @@
     }
 
     .openFile {
-        background-color: violet;
+        background-color: white;
+        position: absolute;
+        width: 60%;
+        height: 5%;
+        /* top: 40%; */
+        font-size: 5em;
+        font-family: Arial;
+        font-weight: 900;
+        text-align: -webkit-center;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 10%;
+    }
+
+    a {
+        color: black;
     }
 
     img {
+        height: 100%;
         width: 100%;
+        object-fit: cover;
     }
 </style>
 
@@ -56,8 +76,6 @@
 <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
 <body>
-
-
     <!--     <model-viewer camera-controls camera-orbit="0deg 75deg 5m" src=" assets/vase_e_2.glb" alt="Kueng Caputo 3d Model ©"
         ar ios-src="assets/KC_Vase_1.usdz" ar ar-modes="webxr scene-viewer quick-look" exposure="2.5" loading="eager"
         skybox-image="assets/skybox/checker12.jpg" minimumRenderScale="1"
@@ -69,10 +87,31 @@
         </button>
     </model-viewer> -->
 
+    <script>
+        //alert(navigator.appName);
+        /*  if (/iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+             alert("mobile:" + navigator.userAgent);
+         }; */
+
+        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            // true for mobile device
+            alert("iphone:" + navigator.userAgent);
+        } else if (/Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            // true for mobile device
+            alert("android:" + navigator.userAgent);
+        } else {
+            // false for not mobile device
+            alert("desktop:" + navigator.userAgent);
+        }
+
+        //alert("navigator.appName is " + navigator.userAgent);
+    </script>
+
 
     <div class="ARPreview">
         <a rel="ar" href="assets/KC_Vase_1.usdz">
             <img src="assets/vase1.jpg">
+            <div class="openFile">Open File</div>
         </a>
 
 </body>
