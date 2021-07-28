@@ -45,21 +45,22 @@
 <body>
 
 
-    <model-viewer camera-controls camera-orbit="calc(30deg - env(window-scroll-y) * 60deg) 75deg 1.5m"
-        src=" assets/vase_e_2.glb" alt="Kueng Caputo 3d Model ©" ar ios-src="assets/KC_Vase_1.usdz" ar
-        ar-modes="webxr scene-viewer quick-look" exposure="2.5" loading="eager"
-        skybox-image="assets/skybox/checker12.jpg" environment-image="assets/skybox/checker5.hdr">
+    <!--    <model-viewer camera-controls camera-orbit="0deg 75deg 5m" src=" assets/vase_e_2.glb" alt="Kueng Caputo 3d Model ©"
+        ar ios-src="assets/KC_Vase_1.usdz" ar ar-modes="webxr scene-viewer quick-look" exposure="2.5" loading="eager"
+        skybox-image="assets/skybox/checker12.jpg" minimumRenderScale="1"
+        environment-image="assets/skybox/checker5.hdr">
 
 
         <button slot="ar-button" class="arButton">
             Enter AR
         </button>
-    </model-viewer>
-    <!--   <div>
+    </model-viewer> -->
+
+    <div>
         <a rel="ar" href="assets/KC_Vase_1.usdz">
             <img src="assets/vase1.jpg">
         </a>
-    </div> -->
+    </div>
 </body>
 
 </HTML>
