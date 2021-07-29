@@ -179,14 +179,12 @@
             $("#shareSelector").removeClass("visible").addClass("invisible");
         }
 
-        shareWhatsapp = function () {
-            /* LinkTextToShare = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(window.location.href);
-            window.open(LinkTextToShare, "_blank"); */
+        sahreLink = function () {
             if (navigator.share) {
                 navigator.share({
-                    title: 'web.dev',
-                    text: 'Check out web.dev.',
-                    url: 'https://web.dev/',
+                    title: 'Kueng Caputo',
+                    text: 'As If, ceramics, 2016',
+                    url: encodeURIComponent(window.location.href),
                 })
                     .then(() => console.log('Successful share'))
                     .catch((error) => console.log('Error sharing', error));
@@ -213,9 +211,7 @@
         <div id="shareSelector" class="invisible fullSize">
             <div class="aQuater"></div>
             <div class="aQuater"></div>
-            <div class="aQuater">
-                <a onclick="shareWhatsapp()" class="icons fa fa-whatsapp"></a>
-            </div>
+            <div class="aQuater"></div>
             <div class="aQuater"><span onclick="closeShareSelector()" class=" icons material-icons">
                     close
                 </span></div>
@@ -223,13 +219,15 @@
 
 
         <div class="aThird">
-            <!-- <button onclick="window.open('whatsapp://send?text=This is WhatsApp sharing example using button')"> Open
-                WhatsApp </button> -->
             <span onclick="openShareSelector()" class=" icons material-icons">
+                info
+            </span>
+        </div>
+        <div class="aThird">
+            <span onclick="sahreLink()" class=" icons material-icons">
                 ios_share
             </span>
         </div>
-        <div class="aThird"></div>
         <div class="aThird"><a href="file:assets/KC_Vase_1.usdz" class="icons material-icons">
                 file_download
             </a></div>
