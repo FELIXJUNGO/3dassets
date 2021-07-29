@@ -121,18 +121,34 @@
         text-align: -webkit-center;
     }
 
-    .aQuater {
+    .aQuater {    
         width: 25%;
         height: 100%;
+        /* background-color: blue; */
         float: left;
         border: none;
         text-align: -webkit-center;
     }
 
-    .fullSize {
-        background-color: yellow;
-        width: 100%;
+    .threeQuater {
+        width: 75%;
         height: 100%;
+        /* //background-color: red; */
+        float: left;
+        border: none;
+        text-align: -webkit-center;
+    }
+
+
+    .fullSize {
+        background-color: white;
+        width: 100%;
+        min-height: 12%;
+        max-height: 80%;
+        z-index: 100;
+        bottom: 0;
+        position: sticky;
+        overflow: hidden;
     }
 
     .invisible {
@@ -171,12 +187,12 @@
             console.log("desktop:" + navigator.userAgent);
         }
 
-        openShareSelector = function () {
-            $("#shareSelector").removeClass("invisible").addClass("visible");
+        openinfoDiv = function () {
+            $("#infoDiv").removeClass("invisible").addClass("visible");
         }
 
-        closeShareSelector = function () {
-            $("#shareSelector").removeClass("visible").addClass("invisible");
+        closeinfoDiv = function () {
+            $("#infoDiv").removeClass("visible").addClass("invisible");
         }
 
         sahreLink = function () {
@@ -207,30 +223,28 @@
             <div class="openFile">Open File</div>
         </a>
     </div>
-    <div class="BottomBar">
-        <div id="shareSelector" class="invisible fullSize">
-            <div class="aQuater"></div>
-            <div class="aQuater"></div>
-            <div class="aQuater"></div>
-            <div class="aQuater"><span onclick="closeShareSelector()" class=" icons material-icons">
-                    close
-                </span></div>
+    <div id="infoDiv" class="invisible fullSize">
+        <div class="threeQuater">
+            <h3>
+
+
+                Material: porcelain<br><br>Plate 220 - H 35, 157×226mm<br>->colors: Black/White, Blue, Dark Red/Red<br>Plate 310 - H 35, 214×311mm<br>->colors: Black/White, Peacock, Dark Red/Red<br>Bowl 160 - H 107 φ 160mm<br>->colors: Black/White, Red, Light Blue/Blue<br>Bowl 280 - H 87 φ 280mm<br>->colors: Black/White, Blue, Dark Red/Red<br>Flower Vase S - H 123 φ 87mm<br>->colors: Black/White, Red, Light Blue/Blue<br>Flower Vase M - H 188 74×140mm<br>->colors: Black/White, Blue, Dark Red/Red<br>Flower Vase L - H 222 φ 130mm<br>->colors: Black/White, Peacock, Dark Red/Red<br><br>Orders:<br>http://www.2016arita.com<br><br>Date: 2016<br>Photography by Suter Caputo</h3>
         </div>
-
-
+        <div class="aQuater"><span onclick="closeinfoDiv()" class=" icons material-icons">
+                close
+            </span></div>
+    </div>
+    <div class="BottomBar">
         <div class="aThird">
-            <span onclick="openShareSelector()" class=" icons material-icons">
+            <span onclick="openinfoDiv()" class=" icons material-icons">
                 info
             </span>
         </div>
+        <div class="aThird"></div>
         <div class="aThird">
             <span onclick="sahreLink()" class=" icons material-icons">
                 ios_share
             </span>
-        </div>
-        <div class="aThird"><a href="file:assets/KC_Vase_1.usdz" class="icons material-icons">
-                file_download
-            </a></div>
     </div>
 </body>
 
