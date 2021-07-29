@@ -179,6 +179,19 @@
             $("#shareSelector").removeClass("visible").addClass("invisible");
         }
 
+        shareWhatsapp = function () {
+            /* LinkTextToShare = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(window.location.href);
+            window.open(LinkTextToShare, "_blank"); */
+            if (navigator.share) {
+                navigator.share({
+                    title: 'web.dev',
+                    text: 'Check out web.dev.',
+                    url: 'https://web.dev/',
+                })
+                    .then(() => console.log('Successful share'))
+                    .catch((error) => console.log('Error sharing', error));
+            }
+        }
 
     //console.log("navigator.appName is " + navigator.userAgent);
 
@@ -201,7 +214,7 @@
             <div class="aQuater"></div>
             <div class="aQuater"></div>
             <div class="aQuater">
-                <a href="https://wa.me/552196312XXXX?text=[message-url-encoded]" class="icons fa fa-whatsapp"></a>
+                <a onclick="shareWhatsapp()" class="icons fa fa-whatsapp"></a>
             </div>
             <div class="aQuater"><span onclick="closeShareSelector()" class=" icons material-icons">
                     close
