@@ -356,7 +356,7 @@
             $("#openButton").empty();
             $("#openButton").append("Open File");
             loading = false;
-            document.removeEventListener("visibilitychange", finishedLoading());
+            document.removeEventListener("visibilitychange", finishedLoading);
         }
 
 
@@ -368,7 +368,7 @@
 
             $("#openButton").append("<progress class='pure-material-progress-circular' />")
             //$("#loadingDiv").removeClass("invisible").addClass("visible");
-            document.addEventListener("visibilitychange", finishedLoading())
+            document.addEventListener("visibilitychange", finishedLoading)
         }
 
 
