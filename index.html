@@ -13,6 +13,138 @@
         width: 100%;
     }
 
+    .pure-material-progress-circular {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 50%;
+        padding: 0.25em;
+        width: 30em;
+        height: 30em;
+        color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+        background-color: transparent;
+        font-size: 16px;
+        overflow: hidden;
+    }
+
+    .pure-material-progress-circular::-webkit-progress-bar {
+        background-color: transparent;
+    }
+
+    /* Indeterminate */
+    .pure-material-progress-circular:indeterminate {
+        -webkit-mask-image: linear-gradient(transparent 50%, black 50%), linear-gradient(to right, transparent 50%, black 50%);
+        mask-image: linear-gradient(transparent 50%, black 50%), linear-gradient(to right, transparent 50%, black 50%);
+        animation: pure-material-progress-circular 6s infinite cubic-bezier(0.3, 0.6, 1, 1);
+    }
+
+    :-ms-lang(x),
+    .pure-material-progress-circular:indeterminate {
+        animation: none;
+    }
+
+    .pure-material-progress-circular:indeterminate::before,
+    .pure-material-progress-circular:indeterminate::-webkit-progress-value {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        margin-bottom: 0.25em;
+        border: solid 0.25em transparent;
+        border-top-color: currentColor;
+        border-radius: 50%;
+        width: 100% !important;
+        height: 100%;
+        background-color: transparent;
+        animation: pure-material-progress-circular-pseudo 0.75s infinite linear alternate;
+    }
+
+    .pure-material-progress-circular:indeterminate::-moz-progress-bar {
+        box-sizing: border-box;
+        border: solid 0.25em transparent;
+        border-top-color: currentColor;
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        animation: pure-material-progress-circular-pseudo 0.75s infinite linear alternate;
+    }
+
+    .pure-material-progress-circular:indeterminate::-ms-fill {
+        animation-name: -ms-ring;
+    }
+
+    @keyframes pure-material-progress-circular {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        12.5% {
+            transform: rotate(180deg);
+            animation-timing-function: linear;
+        }
+
+        25% {
+            transform: rotate(630deg);
+        }
+
+        37.5% {
+            transform: rotate(810deg);
+            animation-timing-function: linear;
+        }
+
+        50% {
+            transform: rotate(1260deg);
+        }
+
+        62.5% {
+            transform: rotate(1440deg);
+            animation-timing-function: linear;
+        }
+
+        75% {
+            transform: rotate(1890deg);
+        }
+
+        87.5% {
+            transform: rotate(2070deg);
+            animation-timing-function: linear;
+        }
+
+        100% {
+            transform: rotate(2520deg);
+        }
+    }
+
+    @keyframes pure-material-progress-circular-pseudo {
+        0% {
+            transform: rotate(-30deg);
+        }
+
+        29.4% {
+            border-left-color: transparent;
+        }
+
+        29.41% {
+            border-left-color: currentColor;
+        }
+
+        64.7% {
+            border-bottom-color: transparent;
+        }
+
+        64.71% {
+            border-bottom-color: currentColor;
+        }
+
+        100% {
+            border-left-color: currentColor;
+            border-bottom-color: currentColor;
+            transform: rotate(225deg);
+        }
+    }
+
     model-viewer {
         width: 100%;
         height: 100%;
@@ -144,7 +276,7 @@
     }
 
 
-    .fullSize {
+    .infoDiv {
         background-color: white;
         width: 100%;
         min-height: 12%;
@@ -153,6 +285,14 @@
         bottom: 0;
         position: sticky;
         overflow: hidden;
+    }
+
+    .fullSize {
+        width: 100%;
+        height: 100%;
+        background-color: yellow;
+        z-index: 2;
+        position: absolute;
     }
 
     .invisible {
@@ -164,7 +304,7 @@
     }
 
     .icons {
-        font-size: 8em;
+        font-size: 6em;
     }
 </style>
 
@@ -213,35 +353,45 @@
 
         loadFile = function () {
             console.log("focus da");
-            $("#ARPreview").addClass("ARloading");
+            //$("#ARPreview").addClass("ARloading");
+
+            $("#openButton").empty()
+
+            $("#openButton").append("<progress class='pure-material-progress-circular' />")
+            //$("#loadingDiv").removeClass("invisible").addClass("visible");
         }
 
-        /*      finishedLoading = function () {
-                 console.log("focus weg");
-                 $("#ARPreview").removeClass("ARloading");
-             } */
+
+        document.body.onblur = function (e) {
+            console.log('lama');
+            $("#openButton").empty();
+            $("#openButton").append("Open File");
+        }
 
     //console.log("navigator.appName is " + navigator.userAgent);
 
     </script>
 
-
+    <div id="loadingDiv" class="fullSize invisible">
+        <div class="openFile">
+            <progress class='pure-material-progress-circular' />
+        </div>
+    </div>
     <div class="Titel">
         <h1>As If</h1>
         <h2>ceramics</h2>
         <h2>2016</h2>
     </div>
-    <div onclick="loadFile()" id=" ARPreview" class="ARPreview">
+    <div onclick="loadFile()" id="ARPreview" class="ARPreview">
         <a rel="ar" href="assets/KC_Vase_1.usdz">
             <img src="assets/IMG_3897.JPG">
-            <div class="openFile">Open File</div>
+            <div id="openButton" class="openFile">Open File
+            </div>
         </a>
     </div>
-    <div id="infoDiv" class="invisible fullSize">
+    <div id="infoDiv" class="invisible infoDiv">
         <div class="threeQuater">
             <h3>
-
-
                 Material: porcelain<br><br>Plate 220 - H 35, 157×226mm<br>->colors: Black/White, Blue, Dark
                 Red/Red<br>Plate 310 - H 35, 214×311mm<br>->colors: Black/White, Peacock, Dark Red/Red<br>Bowl 160 - H
                 107 φ 160mm<br>->colors: Black/White, Red, Light Blue/Blue<br>Bowl 280 - H 87 φ 280mm<br>->colors:
