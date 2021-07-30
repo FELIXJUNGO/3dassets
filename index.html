@@ -351,9 +351,16 @@
             }
         }
 
-        let loading = false
+        finishedLoading = function () {
+            console.log('finishedLoading');
+            $("#openButton").empty();
+            $("#openButton").append("Open File");
+            loading = false;
+            document.removeEventListener("visibilitychange", finishedLoading());
+        }
+
+
         loadFile = function () {
-            loading = true;
             console.log("loadFile");
             //$("#ARPreview").addClass("ARloading");
 
@@ -361,118 +368,11 @@
 
             $("#openButton").append("<progress class='pure-material-progress-circular' />")
             //$("#loadingDiv").removeClass("invisible").addClass("visible");
-        }
-
-        finishedLoading = function () {
-            console.log(loading + ': finishedLoading');
-            if (loading) {
-                console.log('finishedLoading');
-                $("#openButton").empty();
-                $("#openButton").append("Open File");
-                loading = false;
-            }
+            document.addEventListener("visibilitychange", finishedLoading())
         }
 
 
-        /*         var visibilityHidden, visibilityChange;
-                // Opera 12.10 and Firefox 18 and later support 
-                if (typeof document.hidden !== "undefined") {
-                    visibilityHidden = "hidden";
-                    visibilityChange = "visibilitychange";
-                } else if (typeof document.mozHidden !== "undefined") {
-                    visibilityHidden = "mozHidden";
-                    visibilityChange = "mozvisibilitychange";
-                } else if (typeof document.msHidden !== "undefined") {
-                    visibilityHidden = "msHidden";
-                    visibilityChange = "msvisibilitychange";
-                } else if (typeof document.webkitHidden !== "undefined") {
-                    visibilityHidden = "webkitHidden";
-                    visibilityChange = "webkitvisibilitychange";
-                }
-        
-        
-                document.addEventListener("visibilitychange", function () {
-                    console.log(document.visibilityState);
-        
-                    finishedLoading();
-                }) */
 
-
-        /////////////////////////////////////////
-        // check if browser window has focus        
-        var notIE = (document.documentMode === undefined),
-            isChromium = window.chrome;
-
-        if (notIE && !isChromium) {
-
-            // checks for Firefox and other  NON IE Chrome versions
-            $(window).on("focusin", function () {
-
-                setTimeout(function () {
-                    console.log("browser window gains focus1");
-                    // browser window gains focus
-                    // code goes here
-
-                }, 300);
-
-            }).on("focusout", function () {
-
-
-                console.log("browser window loses focus1");
-                // code goes here
-
-            });
-
-        } else {
-
-            // checks for IE and Chromium versions
-            if (window.addEventListener) {
-
-                // bind focus event
-                window.addEventListener("focus", function (event) {
-
-                    // the timeout is due to a slight delay when a browser tab regains focus
-                    setTimeout(function () {
-
-                        console.log("browser window gains focus2")
-                        // code goes here
-
-                    }, 300);
-
-                }, false);
-
-                // bind blur event
-                window.addEventListener("blur", function (event) {
-
-                    console.log("browser window loses focus2");
-                    // code goes
-
-                }, false);
-
-            } else {
-
-                // bind focus event
-                window.attachEvent("focus", function (event) {
-
-                    // the timeout is due to a slight delay when a browser tab regains focus
-                    setTimeout(function () {
-
-                        console.log("browser window gains focus3");
-                        // code goes here
-
-                    }, 300);
-
-                });
-
-                // bind focus event
-                window.attachEvent("blur", function (event) {
-
-                    console.log("browser window loses focus3");
-                    // code goes here
-
-                });
-            }
-        }
 
 
     //console.log("navigator.appName is " + navigator.userAgent);
