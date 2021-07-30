@@ -372,7 +372,28 @@
         }
 
 
+        var heartbeat;
+        var lastInterval;
 
+        function clearTimers() {
+            clearTimeout(heartbeat);
+        }
+
+        function getTime() {
+            return (new Date()).getTime();
+        }
+
+        function intervalHeartbeat() {
+            var now = getTime();
+            var diff = now - lastInterval - 200;
+            lastInterval = now;
+            if (diff > 1000) { // don't trigger on small stutters less than 1000ms
+                console.log("offline?");
+                clearTimers();
+            }
+        }
+        lastInterval = getTime();
+        heartbeat = setInterval(intervalHeartbeat, 200);
 
 
     //console.log("navigator.appName is " + navigator.userAgent);
