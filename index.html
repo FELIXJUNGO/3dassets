@@ -355,20 +355,21 @@
             console.log('finishedLoading');
             $("#openButton").empty();
             $("#openButton").append("Open File");
-            loading = false;
+            if(!navigator.userAgent.match('CriOS')){
             document.removeEventListener("visibilitychange", finishedLoading);
+        }
         }
 
 
         loadFile = function () {
             console.log("loadFile");
-            //$("#ARPreview").addClass("ARloading");
-
             $("#openButton").empty()
-
             $("#openButton").append("<progress class='pure-material-progress-circular' />")
-            //$("#loadingDiv").removeClass("invisible").addClass("visible");
+            if(navigator.userAgent.match('CriOS')){
+                setTimeout(finishedLoading(), 2000);
+            } else {
             window.addEventListener("visibilitychange", finishedLoading)
+            }
         }
 
 
