@@ -354,7 +354,7 @@
         let loading = false
         loadFile = function () {
             loading = true;
-            console.log("focus da");
+            console.log("loadFile");
             //$("#ARPreview").addClass("ARloading");
 
             $("#openButton").empty()
@@ -390,7 +390,15 @@
         }
 
         document.addEventListener(visibilityChange, function () {
-            finishedLoading();
+
+            if (document[visibilityHidden]) {
+                console.log("invisible!");
+
+                finishedLoading();
+            } else {
+                console.log("visible!");
+                finishedLoading();
+            }
         });
 
     //console.log("navigator.appName is " + navigator.userAgent);
