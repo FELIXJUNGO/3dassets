@@ -25,6 +25,10 @@
         height: 100%;
     }
 
+    .ARloading {
+        background-color: burlywood;
+    }
+
     /* 
     #default-ar-button {
         position: absolute;
@@ -207,6 +211,10 @@
             }
         }
 
+        loadFile = function() {
+            $("#ARPreview").addClass("ARloading");
+        }
+
     //console.log("navigator.appName is " + navigator.userAgent);
 
     </script>
@@ -217,7 +225,7 @@
         <h2>ceramics</h2>
         <h2>2016</h2>
     </div>
-    <div class="ARPreview">
+    <div onclick="loadFile()" id="ARPreview" class="ARPreview">
         <a rel="ar" href="assets/KC_Vase_1.usdz">
             <img src="assets/IMG_3897.JPG">
             <div class="openFile">Open File</div>
