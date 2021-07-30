@@ -125,7 +125,7 @@
         text-align: -webkit-center;
     }
 
-    .aQuater {    
+    .aQuater {
         width: 25%;
         height: 100%;
         /* background-color: blue; */
@@ -211,9 +211,15 @@
             }
         }
 
-        loadFile = function() {
+        loadFile = function () {
+            console.log("focus da");
             $("#ARPreview").addClass("ARloading");
         }
+
+        /*      finishedLoading = function () {
+                 console.log("focus weg");
+                 $("#ARPreview").removeClass("ARloading");
+             } */
 
     //console.log("navigator.appName is " + navigator.userAgent);
 
@@ -225,7 +231,7 @@
         <h2>ceramics</h2>
         <h2>2016</h2>
     </div>
-    <div onclick="loadFile()" id="ARPreview" class="ARPreview">
+    <div onclick="loadFile()" id=" ARPreview" class="ARPreview">
         <a rel="ar" href="assets/KC_Vase_1.usdz">
             <img src="assets/IMG_3897.JPG">
             <div class="openFile">Open File</div>
@@ -236,7 +242,13 @@
             <h3>
 
 
-                Material: porcelain<br><br>Plate 220 - H 35, 157×226mm<br>->colors: Black/White, Blue, Dark Red/Red<br>Plate 310 - H 35, 214×311mm<br>->colors: Black/White, Peacock, Dark Red/Red<br>Bowl 160 - H 107 φ 160mm<br>->colors: Black/White, Red, Light Blue/Blue<br>Bowl 280 - H 87 φ 280mm<br>->colors: Black/White, Blue, Dark Red/Red<br>Flower Vase S - H 123 φ 87mm<br>->colors: Black/White, Red, Light Blue/Blue<br>Flower Vase M - H 188 74×140mm<br>->colors: Black/White, Blue, Dark Red/Red<br>Flower Vase L - H 222 φ 130mm<br>->colors: Black/White, Peacock, Dark Red/Red<br><br>Orders:<br>http://www.2016arita.com<br><br>Date: 2016<br>Photography by Suter Caputo</h3>
+                Material: porcelain<br><br>Plate 220 - H 35, 157×226mm<br>->colors: Black/White, Blue, Dark
+                Red/Red<br>Plate 310 - H 35, 214×311mm<br>->colors: Black/White, Peacock, Dark Red/Red<br>Bowl 160 - H
+                107 φ 160mm<br>->colors: Black/White, Red, Light Blue/Blue<br>Bowl 280 - H 87 φ 280mm<br>->colors:
+                Black/White, Blue, Dark Red/Red<br>Flower Vase S - H 123 φ 87mm<br>->colors: Black/White, Red, Light
+                Blue/Blue<br>Flower Vase M - H 188 74×140mm<br>->colors: Black/White, Blue, Dark Red/Red<br>Flower Vase
+                L - H 222 φ 130mm<br>->colors: Black/White, Peacock, Dark
+                Red/Red<br><br>Orders:<br>http://www.2016arita.com<br><br>Date: 2016<br>Photography by Suter Caputo</h3>
         </div>
         <div class="aQuater"><span onclick="closeinfoDiv()" class=" icons material-icons">
                 close
@@ -253,7 +265,7 @@
             <span onclick="sahreLink()" class=" icons material-icons">
                 ios_share
             </span>
-    </div>
+        </div>
 </body>
 
 </HTML>
