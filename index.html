@@ -362,7 +362,7 @@
 
 
         loadFile = function () {
-            console.log("loadFile");
+            alert("loadFile");
             $("#openButton").empty()
             $("#openButton").append("<progress class='pure-material-progress-circular' />")
             if(navigator.userAgent.match('CriOS')){
@@ -374,8 +374,8 @@
 
 
         $( document ).ready(function(){
+            $('#ARPreview a')[0].click();
             alert("open file please!");
-            loadFile();
         });
 
         /*       var heartbeat;
