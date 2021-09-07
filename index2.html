@@ -34,6 +34,7 @@
         width: 100%;
         height: 100%;
         z-index: 1000;
+        background-color: darkgray;
     }
 
     a {
@@ -53,10 +54,10 @@
     #ar-button {
         background-image: url(assets/IMG_3897.JPG);
         position: absolute;
-        left: -4%;
-        top: -4%;
-        height: 108%;
-        width: 108%;
+        left: -1%;
+        top: -1%;
+        height: 15%;
+        width: 35%;
         background-size: contain;
     }
 
@@ -235,6 +236,9 @@
         if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
             // true for mobile device
             console.log("iphone:" + navigator.userAgent);
+            /* $("#androidAR").empty(); */
+
+            $("#iOSAR").empty();
         } else if (/Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             // true for mobile device
             console.log("android:" + navigator.userAgent);
@@ -242,7 +246,7 @@
         } else {
             // false for not mobile device
             console.log("desktop:" + navigator.userAgent);
-            $("androidAR").empty();
+            $("#androidAR").empty();
         }
     });
 </script>
@@ -258,13 +262,19 @@
         </a>
     </div>
 
-    <div onclick="loadFile()" id="androidAR" class="fullOn">
+    <div id="androidAR" class="fullOn">
         <model-viewer src="assets/vase_e_2.glb" alt="A 3D model of an astronaut" ar
-            ar-modes="webxr scene-viewer quick-look" reveal="manual" environment-image="neutral" camera-controls>
+            ar-modes="webxr scene-viewer quick-look" environment-image="neutral" auto-rotate camera-controls>
+        </model-viewer>
+
+
+
+        <!--  <model-viewer src="assets/vase_e_2.glb" alt="A 3D model of an astronaut" poster="assets/IMG_3897.JPG" ar
+            ar-modes="webxr scene-viewer" reveal="interaction" environment-image="neutral" camera-controls>
             <button slot="ar-button" id="ar-button">
                 View in your space
             </button>
-        </model-viewer>
+        </model-viewer> -->
     </div>
 </body>
 
