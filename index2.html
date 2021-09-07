@@ -1,190 +1,342 @@
-<model-viewer src="../../assets/ShopifyModels/Chair.glb" poster="../../assets/ShopifyModels/Chair.png"
-    shadow-intensity="1" ar ar-modes="webxr scene-viewer quick-look" camera-controls alt="A 3D model carousel">
+<HTML>
 
-    <button slot="ar-button" id="ar-button">
-        View in your space
-    </button>
-
-    <div id="ar-prompt">
-        <img src="../../assets/hand.png">
-    </div>
-
-    <button id="ar-failure">
-        AR is not tracking!
-    </button>
-
-    <div class="slider">
-        <div class="slides">
-            <button class="slide selected" onclick="switchSrc(this, 'Chair')"
-                style="background-image: url('../../assets/ShopifyModels/Chair.png');">
-
-            </button><button class="slide" onclick="switchSrc(this, 'Mixer')"
-                style="background-image: url('../../assets/ShopifyModels/Mixer.png');">
-
-            </button><button class="slide" onclick="switchSrc(this, 'GeoPlanter')"
-                style="background-image: url('../../assets/ShopifyModels/GeoPlanter.png');">
-
-            </button><button class="slide" onclick="switchSrc(this, 'ToyTrain')"
-                style="background-image: url('../../assets/ShopifyModels/ToyTrain.png');">
-
-            </button><button class="slide" onclick="switchSrc(this, 'Canoe')"
-                style="background-image: url('../../assets/ShopifyModels/Canoe.png');">
-            </button>
-        </div>
-    </div>
-</model-viewer>
-
-<script type="module">
-    const modelViewer = document.querySelector("model-viewer");
-
-    window.switchSrc = (element, name) => {
-        const base = "../../assets/ShopifyModels/" + name;
-        modelViewer.src = base + '.glb';
-        modelViewer.poster = base + '.png';
-        const slides = document.querySelectorAll(".slide");
-        slides.forEach((element) => { element.classList.remove("selected"); });
-        element.classList.add("selected");
-    };
-
-    document.querySelector(".slider").addEventListener('beforexrselect', (ev) => {
-        // Keep slider interactions from affecting the XR scene.
-        ev.preventDefault();
-    });
-</script>
-
+<HEAD>
+    <TITLE>3d.felixjungo.ch</TITLE>
+    <script src="js/jquery-3.6.0.min.js"></script>
+</HEAD>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <style>
-    /* This keeps child nodes hidden while the element loads */
-    :not(:defined)>* {
-        display: none;
+    body {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+    }
+
+    .pure-material-progress-circular {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 50%;
+        padding: 0.25em;
+        width: 30em;
+        height: 30em;
+        color: rgb(var(--pure-material-primary-rgb, 33, 150, 243));
+        background-color: transparent;
+        font-size: 16px;
+        overflow: hidden;
+    }
+
+    .pure-material-progress-circular::-webkit-progress-bar {
+        background-color: transparent;
+    }
+
+    /* Indeterminate */
+    .pure-material-progress-circular:indeterminate {
+        -webkit-mask-image: linear-gradient(transparent 50%, black 50%), linear-gradient(to right, transparent 50%, black 50%);
+        mask-image: linear-gradient(transparent 50%, black 50%), linear-gradient(to right, transparent 50%, black 50%);
+        animation: pure-material-progress-circular 6s infinite cubic-bezier(0.3, 0.6, 1, 1);
+    }
+
+    :-ms-lang(x),
+    .pure-material-progress-circular:indeterminate {
+        animation: none;
+    }
+
+    .pure-material-progress-circular:indeterminate::before,
+    .pure-material-progress-circular:indeterminate::-webkit-progress-value {
+        content: "";
+        display: block;
+        box-sizing: border-box;
+        margin-bottom: 0.25em;
+        border: solid 0.25em transparent;
+        border-top-color: currentColor;
+        border-radius: 50%;
+        width: 100% !important;
+        height: 100%;
+        background-color: transparent;
+        animation: pure-material-progress-circular-pseudo 0.75s infinite linear alternate;
+    }
+
+    .pure-material-progress-circular:indeterminate::-moz-progress-bar {
+        box-sizing: border-box;
+        border: solid 0.25em transparent;
+        border-top-color: currentColor;
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        animation: pure-material-progress-circular-pseudo 0.75s infinite linear alternate;
+    }
+
+    .pure-material-progress-circular:indeterminate::-ms-fill {
+        animation-name: -ms-ring;
+    }
+
+    @keyframes pure-material-progress-circular {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        12.5% {
+            transform: rotate(180deg);
+            animation-timing-function: linear;
+        }
+
+        25% {
+            transform: rotate(630deg);
+        }
+
+        37.5% {
+            transform: rotate(810deg);
+            animation-timing-function: linear;
+        }
+
+        50% {
+            transform: rotate(1260deg);
+        }
+
+        62.5% {
+            transform: rotate(1440deg);
+            animation-timing-function: linear;
+        }
+
+        75% {
+            transform: rotate(1890deg);
+        }
+
+        87.5% {
+            transform: rotate(2070deg);
+            animation-timing-function: linear;
+        }
+
+        100% {
+            transform: rotate(2520deg);
+        }
+    }
+
+    @keyframes pure-material-progress-circular-pseudo {
+        0% {
+            transform: rotate(-30deg);
+        }
+
+        29.4% {
+            border-left-color: transparent;
+        }
+
+        29.41% {
+            border-left-color: currentColor;
+        }
+
+        64.7% {
+            border-bottom-color: transparent;
+        }
+
+        64.71% {
+            border-bottom-color: currentColor;
+        }
+
+        100% {
+            border-left-color: currentColor;
+            border-bottom-color: currentColor;
+            transform: rotate(225deg);
+        }
     }
 
     model-viewer {
-        background-color: #eee;
-        overflow-x: hidden;
-        --poster-color: #eee;
-    }
-
-    #ar-button {
-        background-image: url(../../assets/ic_view_in_ar_new_googblue_48dp.png);
-        background-repeat: no-repeat;
-        background-size: 20px 20px;
-        background-position: 12px 50%;
-        background-color: #fff;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        white-space: nowrap;
-        bottom: 132px;
-        padding: 0px 16px 0px 40px;
-        font-family: Roboto Regular, Helvetica Neue, sans-serif;
-        font-size: 14px;
-        color: #4285f4;
-        height: 36px;
-        line-height: 36px;
-        border-radius: 18px;
-        border: 1px solid #DADCE0;
-    }
-
-    #ar-button:active {
-        background-color: #E8EAED;
-    }
-
-    #ar-button:focus {
-        outline: none;
-    }
-
-    #ar-button:focus-visible {
-        outline: 1px solid #4285f4;
-    }
-
-    @keyframes circle {
-        from {
-            transform: translateX(-50%) rotate(0deg) translateX(50px) rotate(0deg);
-        }
-
-        to {
-            transform: translateX(-50%) rotate(360deg) translateX(50px) rotate(-360deg);
-        }
-    }
-
-    @keyframes elongate {
-        from {
-            transform: translateX(100px);
-        }
-
-        to {
-            transform: translateX(-100px);
-        }
-    }
-
-    model-viewer>#ar-prompt {
-        position: absolute;
-        left: 50%;
-        bottom: 175px;
-        animation: elongate 2s infinite ease-in-out alternate;
-        display: none;
-    }
-
-    model-viewer[ar-status="session-started"]>#ar-prompt {
-        display: block;
-    }
-
-    model-viewer>#ar-prompt>img {
-        animation: circle 4s linear infinite;
-    }
-
-    model-viewer>#ar-failure {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: 175px;
-        display: none;
-    }
-
-    model-viewer[ar-tracking="not-tracking"]>#ar-failure {
-        display: block;
-    }
-
-    .slider {
         width: 100%;
-        text-align: center;
-        overflow: hidden;
+        height: 100%;
+        --poster-color: grey;
+        scroll-behavior: unset;
+    }
+
+    .ARPreview {
+        width: 100%;
+        height: 100%;
         position: absolute;
-        bottom: 16px;
+        z-index: 10000;
+        background-color: tomato;
     }
 
-    .slides {
-        display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
+    .ARloading {
+        background-color: burlywood;
     }
 
-    .slide {
-        scroll-snap-align: start;
-        flex-shrink: 0;
-        width: 100px;
-        height: 100px;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-color: #fff;
-        margin-right: 10px;
-        border-radius: 10px;
+    /* 
+        #default-ar-button {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            transform: scale(var(--ar-button-scale, 5));
+            transform-origin: bottom right;
+        } */
+
+    .arButton {
+        background-color: white;
+
+        position: absolute;
+        width: 100%;
+        height: 10%;
+        bottom: 0px;
+        z-index: 1000;
+        font-size: 3em;
+        font-weight: 900;
+    }
+
+    .openFile {
+        /* background-color: white; */
+        color: black;
+        /* text-align: left; */
+        position: absolute;
+        /* width: 60%; */
+        height: 30%;
+        /* top: 40%; */
+        font-size: 16em;
+        font-family: Arial;
+        font-weight: 900;
+        text-align: -webkit-center;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        /* padding: 10%; */
+    }
+
+
+    a {
+        color: black;
+        text-decoration: none;
+    }
+
+    img {
+        width: 104%;
+        height: 104%;
+        right: -2%;
+        top: -2%;
+        position: absolute;
+        object-fit: contain;
+    }
+
+    .Titel {
+        position: absolute;
+        top: 0;
+        height: 20%;
+        width: 100%;
+        background-color: white;
+        /* padding: 15px; */
+        padding-top: 7%;
+        padding-left: 7%;
+    }
+
+    .BottomBar {
+        height: 12%;
+        width: 100%;
+        bottom: 0;
+        position: absolute;
+    }
+
+
+    h1 {
+        font-size: 5em;
+        font-family: Arial;
+        font-weight: 900;
+        padding-bottom: 30;
+    }
+
+    h2 {
+        font-size: 2.5em;
+        font-family: Arial;
+        font-weight: 500;
+        line-height: 0.6;
+    }
+
+    .aThird {
+        width: 33%;
+        height: 100%;
+        float: left;
         border: none;
-        display: flex;
+        text-align: -webkit-center;
     }
 
-    .slide.selected {
-        border: 2px solid #4285f4;
+    .aQuater {
+        width: 25%;
+        height: 100%;
+        /* background-color: blue; */
+        float: left;
+        border: none;
+        text-align: -webkit-center;
     }
 
-    .slide:focus {
-        outline: none;
+    .threeQuater {
+        width: 75%;
+        height: 100%;
+        /* //background-color: red; */
+        float: left;
+        border: none;
+        text-align: -webkit-center;
     }
 
-    .slide:focus-visible {
-        outline: 1px solid #4285f4;
+
+    .infoDiv {
+        background-color: white;
+        width: 100%;
+        min-height: 12%;
+        max-height: 80%;
+        z-index: 100;
+        bottom: 0;
+        position: sticky;
+        overflow: hidden;
+    }
+
+    .fullSize {
+        width: 100%;
+        height: 100%;
+        /*   background-color: yellow; */
+        z-index: 2;
+        position: absolute;
+    }
+
+    .invisible {
+        display: none;
+    }
+
+    .visible {
+        display: block;
+    }
+
+    .icons {
+        font-size: 6em;
     }
 </style>
+
+<!-- Import the component -->
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+<body>
+
+    <model-viewer camera-controls camera-orbit="0deg 75deg 5m" src=" assets/vase_e_2.glb" alt="Kueng Caputo 3d Model ©"
+        ar ios-src="assets/KC_Vase_1.usdz" ar ar-modes="webxr scene-viewer quick-look" exposure="2.5" loading="eager"
+        skybox-image="assets/skybox/checker12.jpg" minimumRenderScale="1"
+        environment-image="assets/skybox/checker5.hdr">
+    </model-viewer>
+
+    <script>
+        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            // true for mobile device
+            console.log("iphone:" + navigator.userAgent);
+        } else if (/Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            // true for mobile device
+            console.log("android:" + navigator.userAgent);
+        } else {
+            // false for not mobile device
+            console.log("desktop:" + navigator.userAgent);
+        }
+    </script>
+
+
+</body>
+
+</HTML>
