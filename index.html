@@ -155,6 +155,9 @@
     .ARPreview {
         width: 100%;
         height: 100%;
+        position: absolute;
+        z-index: 10000;
+        background-color: tomato;
     }
 
     .ARloading {
@@ -209,9 +212,10 @@
     }
 
     img {
-        width: 30%;
-        right: 7%;
-        top: 7%;
+        width: 104%;
+        height: 104%;
+        right: -2%;
+        top: -2%;
         position: absolute;
         object-fit: contain;
     }
@@ -290,7 +294,7 @@
     .fullSize {
         width: 100%;
         height: 100%;
-      /*   background-color: yellow; */
+        /*   background-color: yellow; */
         z-index: 2;
         position: absolute;
     }
@@ -355,52 +359,23 @@
             console.log('finishedLoading');
             $("#openButton").empty();
             $("#openButton").append("Open File");
-            if(!navigator.userAgent.match('CriOS')){
-            document.removeEventListener("visibilitychange", finishedLoading);
-        }
-        }
-
-
-        loadFile = function () {
-            //alert("loadFile");
-            $("#openButton").empty()
-            $("#openButton").append("<progress class='pure-material-progress-circular' />")
-            if(navigator.userAgent.match('CriOS')){
-                setTimeout(finishedLoading(), 2000);
-            } else {
-            window.addEventListener("visibilitychange", finishedLoading)
+            if (!navigator.userAgent.match('CriOS')) {
+                document.removeEventListener("visibilitychange", finishedLoading);
             }
         }
 
 
-        $( document ).ready(function(){
-            $('#ARPreview a')[0].trigger();
-            //alert("open file please!");
-        });
+        loadFile = function () {
+            alert("loadFile");
+            $("#openButton").empty()
+            $("#openButton").append("<progress class='pure-material-progress-circular' />")
+            if (navigator.userAgent.match('CriOS')) {
+                setTimeout(finishedLoading(), 2000);
+            } else {
+                window.addEventListener("visibilitychange", finishedLoading)
+            }
+        }
 
-        /*       var heartbeat;
-              var lastInterval;
-      
-              function clearTimers() {
-                  clearTimeout(heartbeat);
-              }
-      
-              function getTime() {
-                  return (new Date()).getTime();
-              }
-      
-              function intervalHeartbeat() {
-                  var now = getTime();
-                  var diff = now - lastInterval - 200;
-                  lastInterval = now;
-                  if (diff > 1000) { // don't trigger on small stutters less than 1000ms
-                      console.log("offline?");
-                      clearTimers();
-                  }
-              }
-              lastInterval = getTime();
-              heartbeat = setInterval(intervalHeartbeat, 200);
-       */
 
     //console.log("navigator.appName is " + navigator.userAgent);
 
@@ -419,7 +394,8 @@
     <div onclick="loadFile()" id="ARPreview" class="ARPreview">
         <a rel="ar" href="assets/KC_Vase_1.usdz">
             <img src="assets/IMG_3897.JPG">
-            <div id="openButton" class="openFile">...</Object>
+            <div id="openButton" class="openFile">
+                click<br>click<br>click<br>click<br>click<br>click<br>click<br>click<br>click<br>click</Object>
             </div>
         </a>
     </div>
