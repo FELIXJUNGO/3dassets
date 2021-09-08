@@ -15,6 +15,113 @@
 </style>
 
 <script>
+    const queryString = window.location.search;
+    console.log(queryString);
+    const urlParams = new URLSearchParams(queryString);
+    let objectNmbr = urlParams.get('o');
+    let object = "";
+    switch (objectNmbr) {
+        case "21":
+            console.log(objectNmbr);
+            object = "marmor_hocker_francesca";
+            console.log(object);
+            break;
+        case "22":
+            console.log(objectNmbr);
+            object = "KC_Vase_1";
+            console.log(object);
+            break;
+        case "23":
+            console.log(objectNmbr);
+            object = "";
+            console.log(object);
+            break;
+        case "24":
+            console.log(objectNmbr);
+            object = "";
+            console.log(object);
+            break;
+        case "1":
+            console.log(objectNmbr);
+            object = "";
+            console.log(object);
+            break;
+        case "2":
+            console.log(objectNmbr);
+            object = "";
+            console.log(object);
+            break;
+        case "3":
+            console.log(objectNmbr);
+            object = "";
+            console.log(object);
+            break;
+        case "4":
+            console.log(objectNmbr);
+            object = "";
+            console.log(object);
+            break;
+        case "5":
+            console.log(objectNmbr);
+            object = "";
+            console.log(object);
+            break;
+        case "6":
+            console.log(objectNmbr);
+            object = "";
+            console.log(object);
+            break;
+        case "7":
+            console.log(objectNmbr);
+            object = "";
+            console.log(object);
+            break;
+        case "8":
+            console.log(objectNmbr);
+            object = "";
+            console.log(object);
+            break;
+        case "9":
+            console.log(objectNmbr);
+            object = "";
+            console.log(object);
+            break;
+        case "10":
+            console.log(objectNmbr);
+            object = "";
+            console.log(object);
+            break;
+        case "11":
+            console.log(objectNmbr);
+            object = "";
+            console.log(object);
+            break;
+        case "12":
+            console.log(objectNmbr);
+            object = "";
+            console.log(object);
+            break;
+        case "13":
+            console.log(objectNmbr);
+            object = "";
+            console.log(object);
+            break;
+        case "14":
+            console.log(objectNmbr);
+            object = "";
+            console.log(object);
+            break;
+        case "15":
+            console.log(objectNmbr);
+            object = "";
+            console.log(object);
+            break;
+        case "16":
+            console.log(objectNmbr);
+            object = "";
+            console.log(object);
+            break;
+    }
 
     function fakeLoader() {
 
@@ -51,8 +158,8 @@
             iosLink.type = "text/css";
             iosLink.rel = "ar";
             iosLink.id = "iosLink"
-            iosLink.href = "assets/marmor_hocker_francesca.usdz";
-            iosLink.innerHTML = '<img src="assets/IMG_3897.JPG">';
+            iosLink.href = "assets/" + object + ".usdz";
+            iosLink.innerHTML = '<img src="assets/' + object + '.JPG">';
 
             iosLink.src = "theDir/theFile.css";         // should immediately start to load.
             $("#fullON").append(iosLink);
