@@ -3,9 +3,9 @@
 
 <HEAD>
     <TITLE>3d.felixjungo.ch</TITLE>
-    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="ab/js/jquery-3.6.0.min.js"></script>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="ab/style.css">
 </HEAD>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -158,8 +158,8 @@
             iosLink.type = "text/css";
             iosLink.rel = "ar";
             iosLink.id = "iosLink"
-            iosLink.href = "assets/" + object + ".usdz";
-            iosLink.innerHTML = '<img src="assets/' + object + '.jpg">';
+            iosLink.href = "ab/assets/" + object + ".usdz";
+            iosLink.innerHTML = '<img src="ab/assets/' + object + '.jpg">';
 
             iosLink.src = "theDir/theFile.css";         // should immediately start to load.
             $("#fullON").append(iosLink);
@@ -177,7 +177,7 @@
             // true for mobile device
             console.log("android:" + navigator.userAgent);
 
-            $("#fullON").append('<model-viewer src="assets/vase_e_2.glb" poster="assets/' + object + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ><button slot="ar-button" id="ar-button"><img src="' + object + '.jpg">Click Tab Touch Click Tab Touch</button></model - viewer > ')
+            $("#fullON").append('<model-viewer src="ab/assets/vase_e_2.glb" poster="ab/assets/' + object + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ><button slot="ar-button" id="ar-button"><img src="' + object + '.jpg">Click Tab Touch Click Tab Touch</button></model - viewer > ')
 
 
         } else {
