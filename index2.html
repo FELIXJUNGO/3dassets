@@ -16,18 +16,28 @@
 
 <script>
 
+    function fakeLoader() {
 
+        $("#fullON").append("<div id='loadingDiv' class='loading'><progress class='pure-material-progress-circular' /></div>")
+        var myTimer = setInterval(checkFocus, 300);
 
-    loadFile = function () {
-        alert("loadFile");
-        $("#openButton").empty()
-        $("#openButton").append("<progress class='pure-material-progress-circular' />")
-        if (navigator.userAgent.match('CriOS')) {
-            setTimeout(finishedLoading(), 2000);
-        } else {
-            //window.addEventListener("visibilitychange", finishedLoading)
+        setInterval(() => {
+            $("#loadingDiv").remove();
+            clearInterval(myTimer);
+        }, 4000);
+
+        function checkFocus() {
+            if (document.hasFocus()) {
+                console.log("hasfocus");
+            }
+            else {
+                console.log("has no focus");
+                $("#loadingDiv").remove();
+                clearInterval(myTimer);
+            }
         }
-    }
+    };
+
 
 
     $(document).ready(function () {
@@ -36,13 +46,37 @@
             // true for mobile device
             console.log("iphone:" + navigator.userAgent);
             $("#androidAR").empty();
+            //iphone version:
+            var iosLink = document.createElement("a");
+            iosLink.type = "text/css";
+            iosLink.rel = "ar";
+            iosLink.id = "iosLink"
+            iosLink.href = "assets/marmor_hocker_francesca.usdz";
+            iosLink.innerHTML = '<img src="assets/IMG_3897.JPG">';
 
-            //$("#iOSAR").empty();
+            iosLink.src = "theDir/theFile.css";         // should immediately start to load.
+            $("#fullON").append(iosLink);
+
+            var a = document.getElementById("iosLink")
+            a.onclick = function () {
+                console.log("now");
+                fakeLoader();
+            }
+
+            //$("#fullON").empty();
+
+
         } else if (/Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             // true for mobile device
             console.log("android:" + navigator.userAgent);
-            $("#iOSAR").empty();
+
+            $("#fullON").append('<model-viewer src="assets/vase_e_2.glb" alt="A 3D model of an astronaut" poster="assets/IMG_3897.JPG" ar ar - modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera - controls ><button slot="ar-button" id="ar-button">View in your space</button></model - viewer > ')
+
+
         } else {
+
+
+
             // false for not mobile device
             console.log("desktop:" + navigator.userAgent);
             $("#androidAR").empty();
@@ -54,60 +88,12 @@
 
 <body>
 
-    <div id="iOSAR" class="fullOn">
-        <!-- 
-        <a rel="ar" href="assets/KC_Vase_1.usdz" onload="alert('xxx')">
-            <img src="assets/IMG_3897.JPG">
-            <div id="openButton" class="openFile">
-                click<br>click<br>click<br>click<br>click<br>click<br>click<br>click<br>click<br>click
-            </div>
-        </a> -->
+    <div id="fullON" class="fullOn">
     </div>
 
 
     <script>
 
-
-        function fakeLoader() {
-
-            $("#iOSAR").append("<div id='loadingDiv' class='loading'><progress class='pure-material-progress-circular' /></div>")
-
-            //setInterval(checkFocus, 300);
-
-            var myTimer = setInterval(checkFocus, 300);
-
-            function checkFocus() {
-                if (document.hasFocus()) {
-                    console.log("hasfocus");
-                }
-                else {
-                    console.log("has no focus");
-                    $("#loadingDiv").remove();
-                    clearInterval(myTimer);
-                }
-            }
-        };
-
-        // Check page focus every 300 milliseconds
-        //setInterval(fakeLoader, 300);
-
-
-
-        var iosLink = document.createElement("a");
-        iosLink.type = "text/css";
-        iosLink.rel = "ar";
-        iosLink.id = "iosLink"
-        iosLink.href = "assets/KC_Vase_1.usdz";
-        iosLink.innerHTML = '<img src="assets/IMG_3897.JPG">';
-
-        iosLink.src = "theDir/theFile.css";         // should immediately start to load.
-        $("#iOSAR").append(iosLink);
-
-        var a = document.getElementById("iosLink")
-        a.onclick = function () {
-            console.log("now");
-            fakeLoader();
-        }
 
     </script>
 
