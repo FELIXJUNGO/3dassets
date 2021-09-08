@@ -177,7 +177,7 @@
             // true for mobile device
             console.log("android:" + navigator.userAgent);
 
-            $("#fullON").append('<model-viewer src="assets/vase_e_2.glb" alt="A 3D model of an astronaut" poster="assets/KC_Vase_1.jpg" ar ar - modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera - controls ><button slot="ar-button" id="ar-button">View in your space</button></model - viewer > ')
+            $("#fullON").append('<model-viewer src="assets/vase_e_2.glb" poster="assets/' + object + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ><button slot="ar-button" id="ar-button"><img src="' + object + '.jpg">Click Tab Touch Click Tab Touch</button></model - viewer > ')
 
 
         } else {
@@ -199,20 +199,6 @@
     </div>
 
 
-    <script>
-
-
-    </script>
-
-    <div id="androidAR">
-
-        <model-viewer src="assets/vase_e_2.glb" alt="A 3D model of an astronaut" poster="assets/KC_Vase_1.jpg" ar
-            ar-modes="webxr scene-viewer" reveal="interaction" environment-image="neutral" camera-controls>
-            <button slot="ar-button" id="ar-button">
-                View in your space
-            </button>
-        </model-viewer>
-    </div>
 </body>
 
 </html>

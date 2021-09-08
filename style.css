@@ -73,10 +73,10 @@ img {
 #ar-button {
     background-image: url(assets/KC_Vase_1.jpg);
     position: absolute;
-    left: -1%;
-    top: -1%;
-    height: 15%;
-    width: 35%;
+    left: -4%;
+    top: -4%;
+    height: 108%;
+    width: 108%;
     background-size: contain;
 }
 
