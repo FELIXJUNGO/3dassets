@@ -26,7 +26,7 @@
         /* text-align: left; */
         position: absolute;
         /* width: 60%; */
-        height: 30%;
+        /* height: 30%; */
         /* top: 40%; */
         font-size: 16em;
         font-family: Arial;
@@ -40,16 +40,21 @@
         /* padding: 10%; */
     }
 
+    
     .fullOn {
         position: absolute;
-        width: 100%;
-        height: 100%;
+        top: -4%;
+        left: -4%;
+        width: 108%;
+        height: 108%;
         z-index: 1000;
+        overflow: hidden;
     }
 
     a {
         color: black;
         text-decoration: none;
+        background-color: aqua;
     }
 
     img {
@@ -230,7 +235,7 @@
 
 
     loadFile = function () {
-        // alert("loadFile");
+        alert("loadFile");
         $("#openButton").empty()
         $("#openButton").append("<progress class='pure-material-progress-circular' />")
         if (navigator.userAgent.match('CriOS')) {
@@ -259,20 +264,37 @@
             $("#androidAR").empty();
         }
     });
+
+    
 </script>
 
 <body>
 
-    <div onclick="loadFile()" id="iOSAR" class="fullOn">
-        <a rel="ar" href="assets/KC_Vase_1.usdz">
+    <div id="iOSAR" class="fullOn">
+        <a rel="ar" href="assets/KC_Vase_1.usdz" onload="alert('xxx')">
             <img src="assets/IMG_3897.JPG">
             <div id="openButton" class="openFile">
                 click<br>click<br>click<br>click<br>click<br>click<br>click<br>click<br>click<br>click
-            </div>
+            </div> 
         </a>
     </div>
 
-    <div id="androidAR" class="fullOn">
+
+<script>
+    function loadedCb(){ console.log("Loaded!"); };
+function errorCb(){ console.log("Error!"); };
+
+var iosLink = document.createElement("link");
+iosLink.type = "text/css";
+iosLink.rel = "ar";
+iosLink.addEventListener('load', loadedCb); // or: iosLink.onload = loadedCb;
+iosLink.addEventListener('error', errorCb); // or: iosLink.onerror = errorCb;
+
+iosLink.src = "theDir/theFile.css";         // should immediately start to load.
+document.getElementsByTagName('head')[0].appendChild(iosLink);
+</script>
+
+    <div id="androidAR">
 
         <model-viewer src="assets/vase_e_2.glb" alt="A 3D model of an astronaut" poster="assets/IMG_3897.JPG" ar
             ar-modes="webxr scene-viewer" reveal="interaction" environment-image="neutral" camera-controls>
