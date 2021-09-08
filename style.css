@@ -28,6 +28,25 @@ model-viewer {
     /* padding: 10%; */
 }
 
+.loading {
+    /* background-color: white; */
+    color: black;
+    /* text-align: left; */
+    position: absolute;
+    /* width: 60%; */
+    height: 30%;
+    /* top: 40%; */
+    font-size: 16em;
+    font-family: Arial;
+    font-weight: 900;
+    text-align: -webkit-center;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
 
 .fullOn {
     position: absolute;

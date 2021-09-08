@@ -55,27 +55,60 @@
 <body>
 
     <div id="iOSAR" class="fullOn">
+        <!-- 
         <a rel="ar" href="assets/KC_Vase_1.usdz" onload="alert('xxx')">
             <img src="assets/IMG_3897.JPG">
             <div id="openButton" class="openFile">
                 click<br>click<br>click<br>click<br>click<br>click<br>click<br>click<br>click<br>click
             </div>
-        </a>
+        </a> -->
     </div>
 
 
     <script>
-        function loadedCb() { console.log("Loaded!"); };
-        function errorCb() { console.log("Error!"); };
 
-        var iosLink = document.createElement("link");
+
+        function fakeLoader() {
+
+            $("#iOSAR").append("<div id='loadingDiv' class='loading'><progress class='pure-material-progress-circular' /></div>")
+
+            //setInterval(checkFocus, 300);
+
+            var myTimer = setInterval(checkFocus, 300);
+
+            function checkFocus() {
+                if (document.hasFocus()) {
+                    console.log("hasfocus");
+                }
+                else {
+                    console.log("has no focus");
+                    $("#loadingDiv").remove();
+                    clearInterval(myTimer);
+                }
+            }
+        };
+
+        // Check page focus every 300 milliseconds
+        //setInterval(fakeLoader, 300);
+
+
+
+        var iosLink = document.createElement("a");
         iosLink.type = "text/css";
         iosLink.rel = "ar";
-        iosLink.addEventListener('load', loadedCb); // or: iosLink.onload = loadedCb;
-        iosLink.addEventListener('error', errorCb); // or: iosLink.onerror = errorCb;
+        iosLink.id = "iosLink"
+        iosLink.href = "assets/KC_Vase_1.usdz";
+        iosLink.innerHTML = '<img src="assets/IMG_3897.JPG">';
 
         iosLink.src = "theDir/theFile.css";         // should immediately start to load.
-        document.getElementsByTagName('head')[0].appendChild(iosLink);
+        $("#iOSAR").append(iosLink);
+
+        var a = document.getElementById("iosLink")
+        a.onclick = function () {
+            console.log("now");
+            fakeLoader();
+        }
+
     </script>
 
     <div id="androidAR">
