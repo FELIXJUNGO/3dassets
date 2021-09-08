@@ -70,7 +70,7 @@ img {
     right: -4%;
     top: -4%;
     position: absolute;
-    object-fit: fill;
+    object-fit: cover;
 }
 
 #ar-button {
