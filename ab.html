@@ -3,7 +3,7 @@
 <meta name="viewport" content="user-scalable=no" />
 
 <HEAD>
-    <TITLE>3d.felixjungo.ch</TITLE>
+    <TITLE>Kueng Caputo Unlimited</TITLE>
     <script src="ab/js/jquery-3.6.0.min.js"></script>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <link rel="stylesheet" href="ab/style.css">
@@ -27,11 +27,11 @@
         list[22] = "KC_Vase_1",
         list[23] = "backsteinlampe",
         list[24] = "saeulen",
-        list[1] = "backsteinlampe",
-        list[2] = "backsteinlampe",
-        list[3] = "backsteinlampe",
-        list[4] = "backsteinlampe",
-        list[5] = "backsteinlampe",
+        list[1] = "",
+        list[2] = "",
+        list[3] = "",
+        list[4] = "",
+        list[5] = "",
         list[6] = "",
         list[7] = "",
         list[8] = "",
@@ -53,9 +53,9 @@
         console.log(list);
 
 
-    function fakeLoader() {
-
-        $("#fullON").append("<div id='loadingDiv' class='loading'><progress class='pure-material-progress-circular' /></div>")
+    function fakeLoader(target) {
+        console.log("fakeLoader" + target);
+        $("#" + target).append("<div id='loadingDiv' class='loading'><progress class='pure-material-progress-circular' /></div>")
         var myTimer = setInterval(checkFocus, 300);
 
         setInterval(() => {
@@ -80,33 +80,23 @@
         console.log(list[objectNmbr]);
 
         var iosLink = document.createElement("a");
-        iosLink.type = "text/css";
+        //iosLink.type = "text/css";
         iosLink.rel = "ar";
-        iosLink.id = "iosLink"
         iosLink.href = "ab/assets/" + list[objectNmbr] + ".usdz";
         iosLink.innerHTML = '<img src="ab/assets/' + list[objectNmbr] + '.jpg" id="imgSize" class="imgClass">';
-        /* 
-                if (target === "index") {
-                    iosLink.href = ""
-                }; */
-
+        iosLink.id = "iosLink"
+        iosLink.onclick = function () { fakeLoader(target); }
         $("#" + target).append(iosLink);
-
-        var a = document.getElementById("index")
-        a.onclick = function () {
-            console.log("now");
-            fakeLoader();
-        }
     }
 
-    createAndroidIntro = function () {
-        console.log(list[objectNmbr]);
-        $("#fullON").append('<model-viewer src="ab/assets/vase_e_2.glb" poster="ab/assets/' + list[objectNmbr] + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ><button slot="ar-button" id="ar-button"><img src="' + list[objectNmbr] + '.jpg">Click Tab Touch Click Tab Touch</button></model - viewer > ')
+    createAndroidIntro = function (target) {
+        console.log(list[objectNmbr] + target);
+        $("#" + target).append('<model-viewer src="ab/assets/vase_e_2.glb" poster="ab/assets/' + list[objectNmbr] + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ><button slot="ar-button" id="ar-button" onclick="fakeLoader(\'' + target + '\')"><img class="imgClass" src="ab/assets/' + list[objectNmbr] + '.jpg">Click Tab Touch Click Tab Touch</button></model - viewer > ');
+        //$("#fullON").onclick = function () { fakeLoader(target); }
     }
 
     createIndex = function () {
         console.log("createIndex");
-        $('.imgClass').css('height', '20%');
 
         list.forEach(function (item, index) {
             if (item.length > 2) {
@@ -114,31 +104,45 @@
                 createiOSIntro("index")
             }
         })
+
+        $('#fullON').addClass("invisible");
         $('.imgClass').addClass('img-override')
     }
 
     $(document).ready(function () {
         console.log("ready!");
+
+
+        //sonstiger Apple check:
+        const a = document.createElement("a");
+        if (a.relList.supports("ar")) {
+            alert("iOS AR available");
+        }
+
+
+
         if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
             // iPhone
-            if (objectNmbr === "index") {
+            if (!objectNmbr) {
                 createIndex();
                 return;
             }
             createiOSIntro("fullON");
         } else if (/Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             // Android
-            createAndroidIntro();
             if (objectNmbr === "index") {
                 createIndex();
                 return;
             }
+            createAndroidIntro("fullON");
         } else {
             // Desktop
-            console.log("desktop:" + navigator.userAgent);
+            alert("desktop:" + navigator.userAgent);
             $("#errorDiv").removeClass("invisible");
+            alert("Desktop:" + navigator.userAgent);
         }
     });
+
 
 </script>
 
