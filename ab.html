@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-
+<meta name="viewport" content="user-scalable=no" />
 <HEAD>
     <TITLE>3d.felixjungo.ch</TITLE>
     <script src="ab/js/jquery-3.6.0.min.js"></script>
@@ -16,113 +16,42 @@
 
 <script>
     const queryString = window.location.search;
-    console.log(queryString);
     const urlParams = new URLSearchParams(queryString);
     let objectNmbr = urlParams.get('o');
-    let object = "";
-    switch (objectNmbr) {
-        case "21":
-            console.log(objectNmbr);
-            object = "marmor_hocker_francesca";
-            console.log(object);
-            break;
-        case "22":
-            console.log(objectNmbr);
-            object = "KC_Vase_1";
-            console.log(object);
-            break;
-        case "23":
-            console.log(objectNmbr);
-            object = "backsteinlampe";
-            console.log(object);
-            break;
-        case "24":
-            console.log(objectNmbr);
-            object = "saeulen";
-            console.log(object);
-            break;
-        case "1":
-            console.log(objectNmbr);
-            object = "";
-            console.log(object);
-            break;
-        case "2":
-            console.log(objectNmbr);
-            object = "";
-            console.log(object);
-            break;
-        case "3":
-            console.log(objectNmbr);
-            object = "";
-            console.log(object);
-            break;
-        case "4":
-            console.log(objectNmbr);
-            object = "";
-            console.log(object);
-            break;
-        case "5":
-            console.log(objectNmbr);
-            object = "";
-            console.log(object);
-            break;
-        case "6":
-            console.log(objectNmbr);
-            object = "";
-            console.log(object);
-            break;
-        case "7":
-            console.log(objectNmbr);
-            object = "";
-            console.log(object);
-            break;
-        case "8":
-            console.log(objectNmbr);
-            object = "";
-            console.log(object);
-            break;
-        case "9":
-            console.log(objectNmbr);
-            object = "";
-            console.log(object);
-            break;
-        case "10":
-            console.log(objectNmbr);
-            object = "";
-            console.log(object);
-            break;
-        case "11":
-            console.log(objectNmbr);
-            object = "";
-            console.log(object);
-            break;
-        case "12":
-            console.log(objectNmbr);
-            object = "";
-            console.log(object);
-            break;
-        case "13":
-            console.log(objectNmbr);
-            object = "";
-            console.log(object);
-            break;
-        case "14":
-            console.log(objectNmbr);
-            object = "";
-            console.log(object);
-            break;
-        case "15":
-            console.log(objectNmbr);
-            object = "";
-            console.log(object);
-            break;
-        case "16":
-            console.log(objectNmbr);
-            object = "";
-            console.log(object);
-            break;
-    }
 
+
+
+    let list = [];
+    list[21] = "marmor_hocker_francesca", 
+    list[22] = "KC_Vase_1", 
+    list[23] = "backsteinlampe", 
+    list[24] = "saeulen", 
+    list[1] = "backsteinlampe", 
+    list[2] = "backsteinlampe", 
+    list[3] = "backsteinlampe", 
+    list[4] = "backsteinlampe", 
+    list[5] = "backsteinlampe", 
+    list[6] = "", 
+    list[7] = "", 
+    list[8] = "", 
+    list[9] = "", 
+    list[10] = "", 
+    list[11] = "", 
+    list[12] = "", 
+    list[13] = "", 
+    list[14] = "", 
+    list[15] = "", 
+    list[16] = "", 
+    list[17] = "", 
+    list[18] = "", 
+    list[19] = "", 
+    list[20] = "", 
+    list[1] = "", 
+    list[1] = "", 
+
+    console.log(list);
+
+    
     function fakeLoader() {
 
         $("#fullON").append("<div id='loadingDiv' class='loading'><progress class='pure-material-progress-circular' /></div>")
@@ -131,7 +60,7 @@
         setInterval(() => {
             $("#loadingDiv").remove();
             clearInterval(myTimer);
-        }, 4000);
+        }, 10000);
 
         function checkFocus() {
             if (document.hasFocus()) {
@@ -146,57 +75,73 @@
     };
 
 
+    createiOSIntro = function (target) {
+        console.log(list[objectNmbr]);
 
-    $(document).ready(function () {
-        console.log("ready!");
-        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-            // true for mobile device
-            console.log("iphone:" + navigator.userAgent);
-            $("#androidAR").empty();
-            //iphone version:
-            var iosLink = document.createElement("a");
+        var iosLink = document.createElement("a");
             iosLink.type = "text/css";
             iosLink.rel = "ar";
             iosLink.id = "iosLink"
-            iosLink.href = "ab/assets/" + object + ".usdz";
-            iosLink.innerHTML = '<img src="ab/assets/' + object + '.jpg">';
+            iosLink.href = "ab/assets/" + list[objectNmbr] + ".usdz";
+            iosLink.innerHTML = '<img src="ab/assets/' + list[objectNmbr] + '.jpg" id="imgSize" class="imgClass">';
 
-            iosLink.src = "theDir/theFile.css";         // should immediately start to load.
-            $("#fullON").append(iosLink);
+            $("#" + target).append(iosLink);
 
             var a = document.getElementById("iosLink")
             a.onclick = function () {
                 console.log("now");
                 fakeLoader();
             }
+    }
 
-            //$("#fullON").empty();
+    createAndroidIntro = function(){
+        console.log(list[objectNmbr]);
+        $("#fullON").append('<model-viewer src="ab/assets/vase_e_2.glb" poster="ab/assets/' + list[objectNmbr] + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ><button slot="ar-button" id="ar-button"><img src="' + list[objectNmbr] + '.jpg">Click Tab Touch Click Tab Touch</button></model - viewer > ')
+    }
 
+    createIndex = function() {
+        console.log("createIndex");
+        $('.imgClass').css('height','20%');
 
+        list.forEach(function(item, index){
+            if(item.length > 2){
+                objectNmbr = index;
+                createiOSIntro("index")
+            }
+        })
+        $('.imgClass').addClass('img-override')
+    }
+
+$(document).ready(function () {
+        console.log("ready!");
+        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            // iPhone
+            if(objectNmbr === "index") {
+                createIndex();
+                return;}
+            createiOSIntro("fullON");
         } else if (/Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            // true for mobile device
-            console.log("android:" + navigator.userAgent);
-
-            $("#fullON").append('<model-viewer src="ab/assets/vase_e_2.glb" poster="ab/assets/' + object + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ><button slot="ar-button" id="ar-button"><img src="' + object + '.jpg">Click Tab Touch Click Tab Touch</button></model - viewer > ')
-
-
+            // Android
+            createAndroidIntro();
+            if(objectNmbr === "index") {
+                createIndex();
+                return;}
         } else {
-
-
-
-            // false for not mobile device
+            // Desktop
             console.log("desktop:" + navigator.userAgent);
-            $("#androidAR").empty();
+            $("#errorDiv").removeClass("invisible");
         }
     });
-
 
 </script>
 
 <body>
 
-    <div id="fullON" class="fullOn">
-    </div>
+    <div id="errorDiv" class="invisible errorMode">🤷‍♂️<br>device not supported<br>🤳</div>
+    
+    <div id="fullON" class="fullOn"></div>
+
+    <div id="index" class="index"></div>
 
 
 </body>
