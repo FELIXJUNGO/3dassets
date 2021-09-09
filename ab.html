@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="user-scalable=no" />
+
 <HEAD>
     <TITLE>3d.felixjungo.ch</TITLE>
     <script src="ab/js/jquery-3.6.0.min.js"></script>
@@ -22,36 +23,36 @@
 
 
     let list = [];
-    list[21] = "marmor_hocker_francesca", 
-    list[22] = "KC_Vase_1", 
-    list[23] = "backsteinlampe", 
-    list[24] = "saeulen", 
-    list[1] = "backsteinlampe", 
-    list[2] = "backsteinlampe", 
-    list[3] = "backsteinlampe", 
-    list[4] = "backsteinlampe", 
-    list[5] = "backsteinlampe", 
-    list[6] = "", 
-    list[7] = "", 
-    list[8] = "", 
-    list[9] = "", 
-    list[10] = "", 
-    list[11] = "", 
-    list[12] = "", 
-    list[13] = "", 
-    list[14] = "", 
-    list[15] = "", 
-    list[16] = "", 
-    list[17] = "", 
-    list[18] = "", 
-    list[19] = "", 
-    list[20] = "", 
-    list[1] = "", 
-    list[1] = "", 
+    list[21] = "marmor_hocker_francesca",
+        list[22] = "KC_Vase_1",
+        list[23] = "backsteinlampe",
+        list[24] = "saeulen",
+        list[1] = "backsteinlampe",
+        list[2] = "backsteinlampe",
+        list[3] = "backsteinlampe",
+        list[4] = "backsteinlampe",
+        list[5] = "backsteinlampe",
+        list[6] = "",
+        list[7] = "",
+        list[8] = "",
+        list[9] = "",
+        list[10] = "",
+        list[11] = "",
+        list[12] = "",
+        list[13] = "",
+        list[14] = "",
+        list[15] = "",
+        list[16] = "",
+        list[17] = "",
+        list[18] = "",
+        list[19] = "",
+        list[20] = "",
+        list[1] = "",
+        list[1] = "",
 
-    console.log(list);
+        console.log(list);
 
-    
+
     function fakeLoader() {
 
         $("#fullON").append("<div id='loadingDiv' class='loading'><progress class='pure-material-progress-circular' /></div>")
@@ -79,32 +80,36 @@
         console.log(list[objectNmbr]);
 
         var iosLink = document.createElement("a");
-            iosLink.type = "text/css";
-            iosLink.rel = "ar";
-            iosLink.id = "iosLink"
-            iosLink.href = "ab/assets/" + list[objectNmbr] + ".usdz";
-            iosLink.innerHTML = '<img src="ab/assets/' + list[objectNmbr] + '.jpg" id="imgSize" class="imgClass">';
+        iosLink.type = "text/css";
+        iosLink.rel = "ar";
+        iosLink.id = "iosLink"
+        iosLink.href = "ab/assets/" + list[objectNmbr] + ".usdz";
+        iosLink.innerHTML = '<img src="ab/assets/' + list[objectNmbr] + '.jpg" id="imgSize" class="imgClass">';
+        /* 
+                if (target === "index") {
+                    iosLink.href = ""
+                }; */
 
-            $("#" + target).append(iosLink);
+        $("#" + target).append(iosLink);
 
-            var a = document.getElementById("iosLink")
-            a.onclick = function () {
-                console.log("now");
-                fakeLoader();
-            }
+        var a = document.getElementById("index")
+        a.onclick = function () {
+            console.log("now");
+            fakeLoader();
+        }
     }
 
-    createAndroidIntro = function(){
+    createAndroidIntro = function () {
         console.log(list[objectNmbr]);
         $("#fullON").append('<model-viewer src="ab/assets/vase_e_2.glb" poster="ab/assets/' + list[objectNmbr] + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ><button slot="ar-button" id="ar-button"><img src="' + list[objectNmbr] + '.jpg">Click Tab Touch Click Tab Touch</button></model - viewer > ')
     }
 
-    createIndex = function() {
+    createIndex = function () {
         console.log("createIndex");
-        $('.imgClass').css('height','20%');
+        $('.imgClass').css('height', '20%');
 
-        list.forEach(function(item, index){
-            if(item.length > 2){
+        list.forEach(function (item, index) {
+            if (item.length > 2) {
                 objectNmbr = index;
                 createiOSIntro("index")
             }
@@ -112,20 +117,22 @@
         $('.imgClass').addClass('img-override')
     }
 
-$(document).ready(function () {
+    $(document).ready(function () {
         console.log("ready!");
         if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
             // iPhone
-            if(objectNmbr === "index") {
+            if (objectNmbr === "index") {
                 createIndex();
-                return;}
+                return;
+            }
             createiOSIntro("fullON");
         } else if (/Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             // Android
             createAndroidIntro();
-            if(objectNmbr === "index") {
+            if (objectNmbr === "index") {
                 createIndex();
-                return;}
+                return;
+            }
         } else {
             // Desktop
             console.log("desktop:" + navigator.userAgent);
@@ -138,7 +145,7 @@ $(document).ready(function () {
 <body>
 
     <div id="errorDiv" class="invisible errorMode">🤷‍♂️<br>device not supported<br>🤳</div>
-    
+
     <div id="fullON" class="fullOn"></div>
 
     <div id="index" class="index"></div>
