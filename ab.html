@@ -91,17 +91,21 @@
 
     createAndroidIntro = function (target) {
         console.log(list[objectNmbr] + target);
-        $("#" + target).append('<model-viewer src="ab/assets/vase_e_2.glb" poster="ab/assets/' + list[objectNmbr] + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ><button slot="ar-button" id="ar-button" onclick="fakeLoader(\'' + target + '\')"><img class="imgClass" src="ab/assets/' + list[objectNmbr] + '.jpg">Click Tab Touch Click Tab Touch</button></model - viewer > ');
+        $("#" + target).append('<model-viewer src="ab/assets/vase_e_2.glb" poster="ab/assets/' + list[objectNmbr] + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ><button slot="ar-button" id="ar-button" onclick="fakeLoader(\'' + target + '\')"><img class="imgClass" src="ab/assets/' + list[objectNmbr] + '.jpg"></button></model - viewer > ');
         //$("#fullON").onclick = function () { fakeLoader(target); }
     }
 
-    createIndex = function () {
+    createIndex = function (device) {
         console.log("createIndex");
 
         list.forEach(function (item, index) {
             if (item.length > 2) {
                 objectNmbr = index;
-                createiOSIntro("index")
+                if (device == "iphone") {
+                    createiOSIntro("index")
+                } else {
+                    createAndroidIntro("index");
+                }
             }
         })
 
@@ -124,14 +128,14 @@
         if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
             // iPhone
             if (!objectNmbr) {
-                createIndex();
+                createIndex("iphone");
                 return;
             }
             createiOSIntro("fullON");
         } else if (/Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             // Android
-            if (objectNmbr === "index") {
-                createIndex();
+            if (!objectNmbr) {
+                createIndex("android");
                 return;
             }
             createAndroidIntro("fullON");
