@@ -23,17 +23,17 @@
 
 
     let list = [];
-    list[21] = "marmor_hocker_francesca",
-        list[22] = "KC_Vase_1",
+    list[21] = "marmor_hocker_1",
+        list[22] = "asif1",
         list[23] = "backsteinlampe",
         list[24] = "saeulen",
         list[1] = "asif5",
-        list[2] = "fendi_jocker_small",
-        list[3] = "sandhocker1",
+        list[2] = "fendi_hocker1",
+        list[3] = "sandhocker_1",
         list[4] = "sandhocker_2",
-        list[5] = "",
-        list[6] = "",
-        list[7] = "",
+        list[5] = "sandhocker_3",
+        list[6] = "teppich1",
+        list[7] = "silo_tisch_sml",
         list[8] = "",
         list[9] = "",
         list[10] = "",
@@ -82,8 +82,8 @@
         var iosLink = document.createElement("a");
         //iosLink.type = "text/css";
         iosLink.rel = "ar";
-        iosLink.href = "ab/assets/" + list[objectNmbr] + ".usdz";
-        iosLink.innerHTML = '<img src="ab/assets/' + list[objectNmbr] + '.jpg" id="imgSize" class="imgClass">';
+        iosLink.href = "ab/assets/" + list[objectNmbr] + "/" + list[objectNmbr] + ".usdz";
+        iosLink.innerHTML = '<img src="ab/assets/' + list[objectNmbr] + '/' + list[objectNmbr] + '.jpg" id="imgSize" class="imgClass">';
         iosLink.id = "iosLink"
         iosLink.onclick = function () { fakeLoader(target); }
         $("#" + target).append(iosLink);
@@ -91,7 +91,7 @@
 
     createAndroidIntro = function (target) {
         console.log(list[objectNmbr] + target);
-        $("#" + target).append('<model-viewer src="ab/assets/vase_e_2.glb" poster="ab/assets/' + list[objectNmbr] + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ><button slot="ar-button" id="ar-button" onclick="fakeLoader(\'' + target + '\')"><img class="imgClass" src="ab/assets/' + list[objectNmbr] + '.jpg"></button></model - viewer > ');
+        $("#" + target).append('<model-viewer src="ab/assets/' + list[objectNmbr] + '/' + list[objectNmbr] + '.glb" poster="ab/assets/' + list[objectNmbr] + '/' + list[objectNmbr] + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ><button slot="ar-button" id="ar-button" onclick="fakeLoader(\'' + target + '\')"><img class="imgClass" src="ab/assets/' + list[objectNmbr] + '/' + list[objectNmbr] + '.jpg"></button></model - viewer > ');
         //$("#fullON").onclick = function () { fakeLoader(target); }
     }
 
@@ -117,6 +117,7 @@
         console.log("ready!");
 
 
+        alert("Preview Version: Bitte Fehler mit Screenshot mir zusenden. Vorallem Android Versionen! Unterstützt werden (up-to-date) iPhones ab nr 7, Android phones: https://developers.google.com/ar/devices");
         //sonstiger Apple check:
         const a = document.createElement("a");
         if (a.relList.supports("ar")) {
@@ -124,21 +125,26 @@
         }
 
 
+        if ($(window).width() < 1100) {
 
-        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-            // iPhone
-            if (!objectNmbr) {
-                createIndex("iphone");
-                return;
+            if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+
+                alert("iphone:" + navigator.userAgent);
+                // iPhone
+                if (!objectNmbr) {
+                    createIndex("iphone");
+                    return;
+                }
+                createiOSIntro("fullON");
+            } else {
+                alert("android:" + navigator.userAgent);
+                // Android
+                if (!objectNmbr) {
+                    createIndex("android");
+                    return;
+                }
+                createAndroidIntro("fullON");
             }
-            createiOSIntro("fullON");
-        } else if (/Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            // Android
-            if (!objectNmbr) {
-                createIndex("android");
-                return;
-            }
-            createAndroidIntro("fullON");
         } else {
             // Desktop
             alert("desktop:" + navigator.userAgent);
