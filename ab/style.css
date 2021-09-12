@@ -13,6 +13,21 @@ p {
 
 }
 
+.click {
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 100;
+    right: 0;
+    left: 0;
+    margin: auto;
+    text-align: center;
+    font-size: 11em;
+    font-family: helvetica;
+}
+
 .invisible {
     display: none !important;
 }
@@ -72,8 +87,8 @@ p {
     right: 0;
     left: 0;
     margin: auto;
-    width: 600px;
-    height: 700px;
+    width: 100%;
+    height: 100%;
     z-index: 10;
 }
 
@@ -84,6 +99,7 @@ a {
 
 .imgClass {
     width: 100%;
+    height: 100%;
     box-shadow: 10px 10px 10px 0px grey;
     left: 0;
     top: 0;

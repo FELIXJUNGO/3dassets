@@ -90,7 +90,7 @@
         //iosLink.type = "text/css";
         iosLink.rel = "ar";
         iosLink.href = "ab/assets/" + list[objectNmbr] + "/" + list[objectNmbr] + ".usdz";
-        iosLink.innerHTML = '<img src="ab/assets/' + list[objectNmbr] + '/' + list[objectNmbr] + '.jpg" id="imgSize" class="imgClass"><p>' + list[objectNmbr] + '.usdz<br>' + fileSizes[objectNmbr] + '</p>';
+        iosLink.innerHTML = '<img src="ab/assets/' + list[objectNmbr] + '/' + list[objectNmbr] + '.jpg" id="imgSize" class="imgClass"><div class="click">click it</div>';
         iosLink.id = objectNmbr;
         iosLink.onclick = function () { fakeLoader(target, this.id); }
         if(target=="index"){
