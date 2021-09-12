@@ -57,13 +57,16 @@
         console.log(fileSizes);
 
 
-    function fakeLoader(target) {
+    function fakeLoader(target, objectNmbrS) {
+        console.log("objectNmnr:" + objectNmbrS)
+        $("#" + objectNmbrS).addClass("selected");
         console.log("fakeLoader" + target);
         $("#" + target).append("<div id='loadingDiv' class='loading'><progress class='pure-material-progress-circular' /></div>")
         var myTimer = setInterval(checkFocus, 300);
 
         setInterval(() => {
             $("#loadingDiv").remove();
+            //$("#" + objectNmbrS).removeClass("selected");
             clearInterval(myTimer);
         }, 10000);
 
@@ -74,6 +77,7 @@
             else {
                 console.log("has no focus");
                 $("#loadingDiv").remove();
+                //$("#" + objectNmbrS).removeClass("selected");
                 clearInterval(myTimer);
             }
         }
@@ -82,21 +86,25 @@
 
     createiOSIntro = function (target) {
         console.log(list[objectNmbr]);
-
         var iosLink = document.createElement("a");
         //iosLink.type = "text/css";
         iosLink.rel = "ar";
         iosLink.href = "ab/assets/" + list[objectNmbr] + "/" + list[objectNmbr] + ".usdz";
         iosLink.innerHTML = '<img src="ab/assets/' + list[objectNmbr] + '/' + list[objectNmbr] + '.jpg" id="imgSize" class="imgClass"><p>' + list[objectNmbr] + '.usdz<br>' + fileSizes[objectNmbr] + '</p>';
-        iosLink.id = "iosLink"
-        iosLink.onclick = function () { fakeLoader(target); }
+        iosLink.id = objectNmbr;
+        iosLink.onclick = function () { fakeLoader(target, this.id); }
+        if(target=="index"){
+            $("#" + target).append('<div class="fileInIndex" id="' + objectNmbr + '"></div>');
+            $("#" + objectNmbr).append(iosLink);
+            return;
+        }
         $("#" + target).append(iosLink);
     }
 
     createAndroidIntro = function (target) {
         console.log(list[objectNmbr] + target);
-        $("#" + target).append('<model-viewer src="ab/assets/' + list[objectNmbr] + '/' + list[objectNmbr] + '.glb" poster="ab/assets/' + list[objectNmbr] + '/' + list[objectNmbr] + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ><button slot="ar-button" id="ar-button" onclick="fakeLoader(\'' + target + '\')"><img class="imgClass" src="ab/assets/' + list[objectNmbr] + '/' + list[objectNmbr] + '.jpg"></button></model - viewer > ');
-        //$("#fullON").onclick = function () { fakeLoader(target); }
+        $("#" + target).append('<model-viewer src="ab/assets/' + list[objectNmbr] + '/' + list[objectNmbr] + '.glb" poster="ab/assets/' + list[objectNmbr] + '/' + list[objectNmbr] + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ><button slot="ar-button" id="ar-button" onclick="fakeLoader(\'' + target + '\',' + objectNmbr + ')"><img class="imgClass" src="ab/assets/' + list[objectNmbr] + '/' + list[objectNmbr] + '.jpg"></button></model - viewer > ');
+       
     }
 
     createIndex = function (device) {
@@ -115,7 +123,6 @@
 
         $('#fullON').addClass("invisible");
         $('#index').removeClass("invisible");
-        $('.imgClass').addClass('img-override')
     }
 
     $(document).ready(function () {
@@ -167,7 +174,7 @@
 
     <div id="fullON" class="fullOn"></div>
 
-    <div id="indexContainer" class="indexContainer"><div id="index" class="index invisible"></div></div>
+    <div id="index" class="index invisible"></div>
 
 
 </body>
