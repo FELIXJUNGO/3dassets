@@ -23,38 +23,38 @@
 
 
     let list = [];
-        list[1] = "asif5",
-        list[2] = "fendi_hocker1",
-        list[3] = "sandhocker_1",
-        list[4] = "sandhocker_2",
-        list[5] = "sandhocker_3",
-        list[6] = "teppich1",
-        list[7] = "silo_tisch_sml",
-        list[8] = "Steinlampe",
-        list[9] = "Silo_Hocker_1",
-        list[21] = "marmor_hocker_1",
-        list[22] = "asif1",
-        list[23] = "backsteinlampe",
-        list[24] = "saeulen",
+    list[1] = "asif5",
+        list[2] = "fendi_hocker1.usdz",
+        list[3] = "sandhocker_1.usdz",
+        list[4] = "sandhocker_2.usdz",
+        list[5] = "sandhocker_3.usdz",
+        list[6] = "teppich1.usdz",
+        list[7] = "silo_tisch_sml.usdz",
+        list[8] = "Steinlampe.usdz",
+        list[9] = "Silo_Hocker_1.usdz",
+        list[21] = "marmor_hocker_1.usdz",
+        list[22] = "asif1.usdz",
+        list[23] = "backsteinlampe.usdz",
+        list[24] = "saeulen.usdz",
 
         console.log(list);
 
     let fileSizes = [];
-        fileSizes[1] = "1.8mb" //"asif5",
-        fileSizes[2] = "3.1mb" //"fendi_hocker1",
-        fileSizes[3] = "1.8mb" //"sandhocker_1",
-        fileSizes[4] = "1.7mb" //"sandhocker_2",
-        fileSizes[5] = "1.4mb" //"sandhocker_3",
-        fileSizes[6] = "2.4mb" //"teppich1",
-        fileSizes[7] = "4.4mb" //"silo_tisch_sml",
-        fileSizes[8] = "34.4mb" //"Steinlampe",
-        fileSizes[8] = "12.4mb" // "Silo_Hocker_1",
-        fileSizes[21] = "3.1mb" //"marmor_hocker_1",
-        fileSizes[22] = "1.3mb" //"asif1",
-        fileSizes[23] = "4.4mb" //"backsteinlampe",
-        fileSizes[24] = "7.2mb" //"saeulen",
+    fileSizes[1] = "1.8mb" //"asif5",
+    fileSizes[2] = "3.1mb" //"fendi_hocker1",
+    fileSizes[3] = "1.8mb" //"sandhocker_1",
+    fileSizes[4] = "1.7mb" //"sandhocker_2",
+    fileSizes[5] = "1.4mb" //"sandhocker_3",
+    fileSizes[6] = "2.4mb" //"teppich1",
+    fileSizes[7] = "4.4mb" //"silo_tisch_sml",
+    fileSizes[8] = "34.4mb" //"Steinlampe",
+    fileSizes[8] = "12.4mb" // "Silo_Hocker_1",
+    fileSizes[21] = "3.1mb" //"marmor_hocker_1",
+    fileSizes[22] = "1.3mb" //"asif1",
+    fileSizes[23] = "4.4mb" //"backsteinlampe",
+    fileSizes[24] = "7.2mb" //"saeulen",
 
-        console.log(fileSizes);
+    console.log(fileSizes);
 
 
     function fakeLoader(target, objectNmbrS) {
@@ -85,15 +85,16 @@
 
 
     createiOSIntro = function (target) {
-        console.log(list[objectNmbr]);
+        let objectName = list[objectNmbr].split('.')[0];
+        console.log(objectName);
         var iosLink = document.createElement("a");
         //iosLink.type = "text/css";
         iosLink.rel = "ar";
-        iosLink.href = "ab/assets/" + list[objectNmbr] + "/" + list[objectNmbr] + ".usdz";
-        iosLink.innerHTML = '<img src="ab/assets/' + list[objectNmbr] + '/' + list[objectNmbr] + '.jpg" id="imgSize" class="imgClass"><div class="click">click it</div>';
+        iosLink.href = "ab/assets/" + objectName + "/" + list[objectNmbr];
+        iosLink.innerHTML = '<img src="ab/assets/' + objectName + '/' + objectName + '.jpg" id="imgSize" class="imgClass"><div class="click">click it</div>';
         iosLink.id = objectNmbr;
         iosLink.onclick = function () { fakeLoader(target, this.id); }
-        if(target=="index"){
+        if (target == "index") {
             $("#" + target).append('<div class="fileInIndex" id="' + objectNmbr + '"></div>');
             $("#" + objectNmbr).append(iosLink);
             return;
@@ -102,9 +103,10 @@
     }
 
     createAndroidIntro = function (target) {
-        console.log(list[objectNmbr] + target);
-        $("#" + target).append('<model-viewer src="ab/assets/' + list[objectNmbr] + '/' + list[objectNmbr] + '.glb" poster="ab/assets/' + list[objectNmbr] + '/' + list[objectNmbr] + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ><button slot="ar-button" id="ar-button" onclick="fakeLoader(\'' + target + '\',' + objectNmbr + ')"><img class="imgClass" src="ab/assets/' + list[objectNmbr] + '/' + list[objectNmbr] + '.jpg"></button></model - viewer > ');
-       
+        console.log(list[objectNmbr].split('.')[0] + target);
+        let objectName = list[objectNmbr].split('.')[0];
+        $("#" + target).append('<model-viewer src="ab/assets/' + objectName + '/' + objectName + '.glb" poster="ab/assets/' + objectName + '/' + objectName + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ><button slot="ar-button" id="ar-button" onclick="fakeLoader(\'' + target + '\',' + objectNmbr + ')"><img class="imgClass" src="ab/assets/' + objectName + '/' + objectName + '.jpg"></button></model - viewer > ');
+        $("#" + target).append('<div class="click">click it</div>');
     }
 
     createIndex = function (device) {
