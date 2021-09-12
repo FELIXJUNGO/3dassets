@@ -96,7 +96,6 @@
         })
 
         $('#fullON').addClass("invisible");
-        $('#index').removeClass("invisible");
         $('.imgClass').addClass('img-override')
     }
 
@@ -104,11 +103,11 @@
         console.log("ready!");
 
 
-        //alert("Preview Version - Testen bitte ab Dienstag: Bitte Fehler mit Screenshot mir zusenden. Wer hat alles ein Android telefon? Unterstützt werden (up-to-date) iPhones ab nr 7, Android phones: https://developers.google.com/ar/devices");
+        alert("Preview Version - Testen bitte ab Dienstag: Bitte Fehler mit Screenshot mir zusenden. Wer hat alles ein Android telefon? Unterstützt werden (up-to-date) iPhones ab nr 7, Android phones: https://developers.google.com/ar/devices");
         //sonstiger Apple check:
         const a = document.createElement("a");
         if (a.relList.supports("ar")) {
-            //alert("iOS AR available");
+            alert("iOS AR available");
         }
 
 
@@ -116,7 +115,7 @@
 
             if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
 
-                //alert("iphone:" + navigator.userAgent);
+                alert("iphone:" + navigator.userAgent);
                 // iPhone
                 if (!objectNmbr) {
                     createIndex("iphone");
@@ -124,7 +123,7 @@
                 }
                 createiOSIntro("fullON");
             } else {
-                //alert("android:" + navigator.userAgent);
+                alert("android:" + navigator.userAgent);
                 // Android
                 if (!objectNmbr) {
                     createIndex("android");
@@ -134,9 +133,9 @@
             }
         } else {
             // Desktop
-            //alert("desktop:" + navigator.userAgent);
+            alert("desktop:" + navigator.userAgent);
             $("#errorDiv").removeClass("invisible");
-            //alert("Desktop:" + navigator.userAgent);
+            alert("Desktop:" + navigator.userAgent);
         }
     });
 
@@ -149,7 +148,7 @@
 
     <div id="fullON" class="fullOn"></div>
 
-    <div id="index" class="index invisible"></div>
+    <div id="index" class="index"></div>
 
 
 </body>
