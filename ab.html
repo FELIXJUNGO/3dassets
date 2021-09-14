@@ -109,6 +109,12 @@
     createAndroidIntro = function (target) {
         console.log(list[objectNmbr].split('.')[0] + target);
         let objectName = list[objectNmbr].split('.')[0];
+        if (target == "index") {
+            $("#" + target).append('<div class="fileInIndex" id="' + objectNmbr + '"></div>');
+            $("#" + objectNmbr).append('<model-viewer src="ab/assets/' + objectName + '/' + objectName + '.glb" poster="ab/assets/' + objectName + '/' + objectName + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ><button slot="ar-button" id="ar-button" onclick="fakeLoader(\'' + target + '\',' + objectNmbr + ')"><img class="imgClass" src="ab/assets/' + objectName + '/' + objectName + '.jpg"></button></model - viewer > ');
+            return;
+        }
+
         $("#" + target).append('<model-viewer src="ab/assets/' + objectName + '/' + objectName + '.glb" poster="ab/assets/' + objectName + '/' + objectName + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ><button slot="ar-button" id="ar-button" onclick="fakeLoader(\'' + target + '\',' + objectNmbr + ')"><img class="imgClass" src="ab/assets/' + objectName + '/' + objectName + '.jpg"></button></model - viewer > ');
         $("#" + target).append('<div class="click">click it</div>');
     }
@@ -135,7 +141,7 @@
         console.log("ready!");
 
 
-        //alert("Preview Version - Testen bitte ab Dienstag: Bitte Fehler mit Screenshot mir zusenden. Wer hat alles ein Android telefon? Unterstützt werden (up-to-date) iPhones ab nr 7, Android phones: https://developers.google.com/ar/devices");
+        ("Preview Version: Bitte Genere Rückmeldung an mich senden! Unterstützt werden (up-to-date) iPhones ab 7, Android phones: https://developers.google.com/ar/devices");
         //sonstiger Apple check:
         const a = document.createElement("a");
         if (a.relList.supports("ar")) {
