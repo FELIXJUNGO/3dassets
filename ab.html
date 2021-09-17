@@ -23,8 +23,8 @@
 
 
     let list = [];
-    list[1] = "asif5",
-        list[2] = "fendi_hocker1.usdz",
+        list[1] = "backsteinlampe.reality",
+        list[2] = "sandhocker.reality",
         list[3] = "sandhocker_1.usdz",
         list[4] = "sandhocker_2.usdz",
         list[5] = "sandhocker_3.usdz",
@@ -33,7 +33,7 @@
         list[8] = "Steinlampe.usdz",
         list[9] = "Silo_Hocker_1.usdz",
         list[21] = "marmor_hocker_1.usdz",
-        list[22] = "asif1.usdz",
+        list[22] = "saeulen.reality",
         list[23] = "backsteinlampe.usdz",
         list[24] = "saeulen.usdz",
         list[25] = "gruener_bogen.usdz",
@@ -65,7 +65,8 @@
         console.log("objectNmnr:" + objectNmbrS)
         $("#" + objectNmbrS).addClass("selected");
         console.log("fakeLoader" + target);
-        $("#" + target).append("<div id='loadingDiv' class='loading'><progress class='pure-material-progress-circular' /></div>")
+        $("#" + target).append("<div id='loadingDiv' class='loading'><progress class='pure-material-progress-circular' /></div>");
+        $("#click").empty();
         var myTimer = setInterval(checkFocus, 300);
 
         setInterval(() => {
@@ -95,7 +96,7 @@
         //iosLink.type = "text/css";
         iosLink.rel = "ar";
         iosLink.href = "ab/assets/" + objectName + "/" + list[objectNmbr];
-        iosLink.innerHTML = '<img src="ab/assets/' + objectName + '/' + objectName + '.jpg" id="imgSize" class="imgClass"><div class="click">click it</div>';
+        iosLink.innerHTML = '<img src="ab/assets/' + objectName + '/' + objectName + '.jpg" id="imgSize" class="imgClass"><div id="click" class="click">click it</div>';
         iosLink.id = objectNmbr;
         iosLink.onclick = function () { fakeLoader(target, this.id); }
         if (target == "index") {
@@ -110,7 +111,7 @@
         console.log(list[objectNmbr].split('.')[0] + target);
         let objectName = list[objectNmbr].split('.')[0];
         $("#" + target).append('<model-viewer src="ab/assets/' + objectName + '/' + objectName + '.glb" poster="ab/assets/' + objectName + '/' + objectName + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ><button slot="ar-button" id="ar-button" onclick="fakeLoader(\'' + target + '\',' + objectNmbr + ')"><img class="imgClass" src="ab/assets/' + objectName + '/' + objectName + '.jpg"></button></model - viewer > ');
-        $("#" + target).append('<div class="click">click it</div>');
+        $("#" + target).append('<div id="click" class="click">click it</div>');
     }
 
     createIndex = function (device) {
@@ -132,22 +133,25 @@
     }
 
     $(document).ready(function () {
-        console.log("ready!");
+        console.log("ready!ad");
 
-
-        //alert("Preview Version - Testen bitte ab Dienstag: Bitte Fehler mit Screenshot mir zusenden. Wer hat alles ein Android telefon? Unterstützt werden (up-to-date) iPhones ab nr 7, Android phones: https://developers.google.com/ar/devices");
+        alert("Preview Version - Testen bitte ab Dienstag: Bitte Fehler mit Screenshot mir zusenden. Wer hat alles ein Android telefon? Unterstützt werden (up-to-date) iPhones ab nr 7, Android phones: https://developers.google.com/ar/devices");
         //sonstiger Apple check:
-        const a = document.createElement("a");
-        if (a.relList.supports("ar")) {
-            //alert("iOS AR available");
-        }
 
 
-        if ($(window).width() < 1100) {
+        const isMobile = ('ontouchstart' in document.documentElement && navigator.userAgent.match(/Mobi/));
+        alert(isMobile);
+
+        if (isMobile) {
 
             if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
 
-                //alert("iphone:" + navigator.userAgent);
+                alert("iphone:  " + navigator.userAgent);
+
+                const a = document.createElement("a");
+                if (a.relList.supports("ar")) {
+                    alert("iOS AR available");
+                }
                 // iPhone
                 if (!objectNmbr) {
                     createIndex("iphone");
@@ -155,7 +159,7 @@
                 }
                 createiOSIntro("fullON");
             } else {
-                //alert("android:" + navigator.userAgent);
+                alert("android:  " + navigator.userAgent);
                 // Android
                 if (!objectNmbr) {
                     createIndex("android");
@@ -165,7 +169,7 @@
             }
         } else {
             // Desktop
-            //alert("desktop:" + navigator.userAgent);
+            alert("desktop!");
             $("#errorDiv").removeClass("invisible");
             //alert("Desktop:" + navigator.userAgent);
         }
