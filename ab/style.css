@@ -13,6 +13,10 @@ p {
 
 }
 
+.material-icons {
+    font-size: 1em !important;
+}
+
 .click {
     pointer-events: none;
     width: 100%;
@@ -27,6 +31,23 @@ p {
     text-align: center;
     font-size: 11em;
     font-family: helvetica;
+}
+
+.size {
+    pointer-events: none;
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    top: 86%;
+    bottom: 0;
+    z-index: 100;
+    right: 0;
+    left: 0;
+    margin: auto;
+    text-align: center;
+    font-size: 4em;
+    font-family: helvetica;
+
 }
 
 .invisible {
@@ -112,13 +133,13 @@ a {
 
 #ar-button {
     position: absolute;
-    left: -4%;
-    top: -4%;
-    height: 108%;
-    width: 108%;
+    left: 0%;
+    top: 0%;
+    height: 100%;
+    width: 100%;
     background-size: contain;
-}
-
+} 
+ 
 #ar-button:active {
     background-color: #E8EAED;
 }

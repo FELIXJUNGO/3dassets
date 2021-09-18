@@ -22,43 +22,44 @@
 
 
 
+    if (objectNmbr < 21 || objectNmbr > 23) {
+        alert("falscher Link! - versuche es mit https://www.kueng-caputo.ch/ab.html?o=21");
+    }
+
     let list = [];
-        list[1] = "backsteinlampe.reality",
-        list[2] = "sandhocker.reality",
-        list[3] = "sandhocker_1.usdz",
-        list[4] = "sandhocker_2.usdz",
-        list[5] = "sandhocker_3.usdz",
+
+    //Poster 2:
+    list[1] = "backsteinlampe.reality,4.9mb,8.3mb",
+        list[2] = "sandhocker.reality,_glb_?_mb,_usdz_?_mb",
+        list[3] = "sandhocker_1.usdz,_glb_?_mb,_usdz_?_mb",
+        list[4] = "sandhocker_2.usdz,_glb_?_mb,_usdz_?_mb",
+        list[5] = "sandhocker_3.usdz,_glb_?_mb,_usdz_?_mb",
+
+
+        //Poster 1:
+
         list[6] = "teppich1.usdz",
         list[7] = "silo_tisch_sml.usdz",
         list[8] = "Steinlampe.usdz",
         list[9] = "Silo_Hocker_1.usdz",
-        list[21] = "marmor_hocker_1.usdz",
-        list[22] = "saeulen.reality",
-        list[23] = "backsteinlampe.usdz",
-        list[24] = "saeulen.usdz",
-        list[25] = "gruener_bogen.usdz",
-        list[26] = "ONOFFtable.usdz",
+
+
+        //Wallpaper QR1: Fendi Palmen:
+        list[22] = "backsteinlampe.reality,4.9mb,8.3mb",
+        //Wallpaper QR2: Blauer Sandhocker:
+        list[21] = "sandhocker.reality,2mb,5.9mb",
+        //Wallpaper QR3: Gruener Bogen //Evt. Fendi Pult später
+        list[20] = "gruener_bogen.reality,11.6mb,22.5mb",
+        //Wallpaper QR4: Facemapping
+        list[23] = "facemapping.reality,1.9mb,43.2mb",
+
+
+
+        list[25] = "gruener_bogen.usdz,_glb_?_mb,_usdz_?_mb",
+        list[26] = "ONOFFtable.usdz,_glb_?_mb,_usdz_?_mb",
 
         console.log(list);
 
-    let fileSizes = [];
-    fileSizes[1] = "1.8mb" //"asif5",
-    fileSizes[2] = "3.1mb" //"fendi_hocker1",
-    fileSizes[3] = "1.8mb" //"sandhocker_1",
-    fileSizes[4] = "1.7mb" //"sandhocker_2",
-    fileSizes[5] = "1.4mb" //"sandhocker_3",
-    fileSizes[6] = "2.4mb" //"teppich1",
-    fileSizes[7] = "4.4mb" //"silo_tisch_sml",
-    fileSizes[8] = "34.4mb" //"Steinlampe",
-    fileSizes[8] = "12.4mb" // "Silo_Hocker_1",
-    fileSizes[21] = "3.1mb" //"marmor_hocker_1",
-    fileSizes[22] = "1.3mb" //"asif1",
-    fileSizes[23] = "4.4mb" //"backsteinlampe",
-    fileSizes[24] = "7.2mb" //"saeulen",
-    fileSizes[25] = "17.2mb" //"??",
-    fileSizes[26] = "17.2mb" //"??",
-
-    console.log(fileSizes);
 
 
     function fakeLoader(target, objectNmbrS) {
@@ -67,6 +68,7 @@
         console.log("fakeLoader" + target);
         $("#" + target).append("<div id='loadingDiv' class='loading'><progress class='pure-material-progress-circular' /></div>");
         $("#click").empty();
+        $("#ar-button").addClass("invisible");
         var myTimer = setInterval(checkFocus, 300);
 
         setInterval(() => {
@@ -90,13 +92,15 @@
 
 
     createiOSIntro = function (target) {
+        let objectNameiOS = list[objectNmbr].split(',')[0];
+        let objectSizeiOS = list[objectNmbr].split(',')[2];
         let objectName = list[objectNmbr].split('.')[0];
         console.log(objectName);
         var iosLink = document.createElement("a");
         //iosLink.type = "text/css";
         iosLink.rel = "ar";
-        iosLink.href = "ab/assets/" + objectName + "/" + list[objectNmbr];
-        iosLink.innerHTML = '<img src="ab/assets/' + objectName + '/' + objectName + '.jpg" id="imgSize" class="imgClass"><div id="click" class="click">click it</div>';
+        iosLink.href = "ab/assets/" + objectName + "/" + objectNameiOS;
+        iosLink.innerHTML = '<img src="ab/assets/' + objectName + '/' + objectName + '.jpg" id="imgSize" class="imgClass"><div id="click" class="click">click it</div><div id="size" class="size">' + objectSizeiOS + '</div>';
         iosLink.id = objectNmbr;
         iosLink.onclick = function () { fakeLoader(target, this.id); }
         if (target == "index") {
@@ -109,15 +113,20 @@
 
     createAndroidIntro = function (target) {
         console.log(list[objectNmbr].split('.')[0] + target);
+        let objectSizeGLB = list[objectNmbr].split(',')[1];
         let objectName = list[objectNmbr].split('.')[0];
         if (target == "index") {
             $("#" + target).append('<div class="fileInIndex" id="' + objectNmbr + '"></div>');
-            $("#" + objectNmbr).append('<model-viewer src="ab/assets/' + objectName + '/' + objectName + '.glb" poster="ab/assets/' + objectName + '/' + objectName + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ><button slot="ar-button" id="ar-button" onclick="fakeLoader(\'' + target + '\',' + objectNmbr + ')"><img class="imgClass" src="ab/assets/' + objectName + '/' + objectName + '.jpg"></button></model - viewer > ');
+            $("#" + objectNmbr).append('<model-viewer src="ab/assets/' + objectName + '/' + objectName + '.glb" poster="ab/assets/' + objectName + '/' + objectName + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ios-src="ab/assets/' + objectName + '/' + objectName + '.usdz" ><button slot="ar-button" id="ar-button" onclick="fakeLoader(\'' + target + '\',' + objectNmbr + ')"><img class="imgClass" src="ab/assets/' + objectName + '/' + objectName + '.jpg"></button></model - viewer > ');
             return;
         }
+        //direct intent link:
+        //$("#" + target).append('<a href="intent://arvr.google.com/scene-viewer/1.0?file=https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Avocado/glTF/Avocado.gltf#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url=https://developers.google.com/ar;end;"><img class="imgClass" src="ab/assets/' + objectName + '/' + objectName + '.jpg">Avocado</a>');
 
-        $("#" + target).append('<model-viewer src="ab/assets/' + objectName + '/' + objectName + '.glb" poster="ab/assets/' + objectName + '/' + objectName + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ><button slot="ar-button" id="ar-button" onclick="fakeLoader(\'' + target + '\',' + objectNmbr + ')"><img class="imgClass" src="ab/assets/' + objectName + '/' + objectName + '.jpg"></button></model - viewer > ');
+
+        $("#" + target).append('<model-viewer src="ab/assets/' + objectName + '/' + objectName + '.glb" poster="ab/assets/' + objectName + '/' + objectName + '.jpg" ar ar-modes="webxr scene-viewer" loading="eager" reveal="auto" environment-image="neutral" camera-controls ios-src="ab/assets/' + objectName + '/' + objectName + '.usdz"><button slot="ar-button" id="ar-button" onclick="fakeLoader(\'' + target + '\',' + objectNmbr + ')"><img class="imgClass" src="ab/assets/' + objectName + '/' + objectName + '.jpg"></button></model - viewer > ');
         $("#" + target).append('<div id="click" class="click">click it</div>');
+        $("#" + target).append('<div id="size" class="size">' + objectSizeGLB + '<br><span class="material-icons">download</span></div>');
     }
 
     createIndex = function (device) {
@@ -139,47 +148,51 @@
     }
 
     $(document).ready(function () {
-        console.log("ready!ad");
+        console.log("ready!");
 
 
-        ("Preview Version: Bitte Genere Rückmeldung an mich senden! Unterstützt werden (up-to-date) iPhones ab 7, Android phones: https://developers.google.com/ar/devices");
+        alert("Preview Version: V3 \n\nbitte screenshots machen, merci");
         //sonstiger Apple check:
 
+        /* 
+                const isMobile = ('ontouchstart' in document.documentElement && navigator.userAgent.match(/Mobi/));
+        
+                if (isMobile) {
+         */
+        console.log(navigator.userAgent);
+        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
 
-        const isMobile = ('ontouchstart' in document.documentElement && navigator.userAgent.match(/Mobi/));
-        alert(isMobile);
+            alert("Die Seite wird aufgerufen mit einem iPhone: richtig?\n \n" + navigator.userAgent);
 
-        if (isMobile) {
-
-            if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-
-                alert("iphone:  " + navigator.userAgent);
-
-                const a = document.createElement("a");
-                if (a.relList.supports("ar")) {
-                    alert("iOS AR available");
-                }
-                // iPhone
-                if (!objectNmbr) {
-                    createIndex("iphone");
-                    return;
-                }
-                createiOSIntro("fullON");
+            const a = document.createElement("a");
+            if (a.relList.supports("ar")) {
+                alert("iOS AR sollte auf diesem Handy funktionieren");
             } else {
-                alert("android:  " + navigator.userAgent);
-                // Android
-                if (!objectNmbr) {
-                    createIndex("android");
-                    return;
-                }
+                alert("kein Support fuer AR, mal schauen ob es trotzdem geht...?");
                 createAndroidIntro("fullON");
+                return;
             }
+            // iPhone
+            if (!objectNmbr) {
+                createIndex("iphone");
+                return;
+            }
+            createiOSIntro("fullON");
         } else {
-            // Desktop
-            alert("desktop!");
-            $("#errorDiv").removeClass("invisible");
-            //alert("Desktop:" + navigator.userAgent);
+            alert("Die Seite wird aufgerufen mit einem Android Mobile Phone: richtig?\n \n" + navigator.userAgent);
+            // Android
+            if (!objectNmbr) {
+                createIndex("android");
+                return;
+            }
+            createAndroidIntro("fullON");
         }
+        /*         } else {
+                    // Desktop
+                    alert("desktop!");
+                    $("#errorDiv").removeClass("invisible");
+                    //alert("Desktop:" + navigator.userAgent);
+                } */
     });
 
 
@@ -187,7 +200,7 @@
 
 <body>
 
-    <div id="errorDiv" class="invisible errorMode">🤷‍♂️<br>device not supported<br>🤳</div>
+    <div id="errorDiv" class="invisible errorMode">device not supported</div>
 
     <div id="fullON" class="fullOn"></div>
 
