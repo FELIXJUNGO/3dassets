@@ -20,20 +20,21 @@
     const urlParams = new URLSearchParams(queryString);
     let objectNmbr = urlParams.get('o');
 
-
-
-    if (objectNmbr < 21 || objectNmbr > 23) {
-        alert("falscher Link! - versuche es mit https://www.kueng-caputo.ch/ab.html?o=21");
+    console.log(objectNmbr);
+    if (objectNmbr) {
+        if (objectNmbr < 20 || objectNmbr > 23) {
+            alert("falscher Link! - versuche es mit https://www.kueng-caputo.ch/ab.html?o=21");
+        }
     }
 
     let list = [];
 
     //Poster 2:
-    list[1] = "backsteinlampe.reality,4.9mb,8.3mb",
-        list[2] = "sandhocker.reality,_glb_?_mb,_usdz_?_mb",
-        list[3] = "sandhocker_1.usdz,_glb_?_mb,_usdz_?_mb",
-        list[4] = "sandhocker_2.usdz,_glb_?_mb,_usdz_?_mb",
-        list[5] = "sandhocker_3.usdz,_glb_?_mb,_usdz_?_mb",
+    list[1] = "backsteinlampe.reality,4.9MB,8.3MB",
+        list[2] = "sandhocker.reality,_glb_?_MB,_usdz_?_MB",
+        list[3] = "sandhocker_1.usdz,_glb_?_MB,_usdz_?_MB",
+        list[4] = "sandhocker_2.usdz,_glb_?_MB,_usdz_?_MB",
+        list[5] = "sandhocker_3.usdz,_glb_?_MB,_usdz_?_MB",
 
 
         //Poster 1:
@@ -45,18 +46,18 @@
 
 
         //Wallpaper QR1: Fendi Palmen:
-        list[22] = "backsteinlampe.reality,4.9mb,8.3mb",
+        list[22] = "backsteinlampe.reality,4.9 MB,8.3 MB",
         //Wallpaper QR2: Blauer Sandhocker:
-        list[21] = "sandhocker.reality,2mb,5.9mb",
+        list[21] = "sandhocker.reality,2 MB,5.9 MB",
         //Wallpaper QR3: Gruener Bogen //Evt. Fendi Pult später
-        list[20] = "gruener_bogen.reality,11.6mb,22.5mb",
+        list[20] = "gruener_bogen.reality,11.6 MB,22.5 MB",
         //Wallpaper QR4: Facemapping
-        list[23] = "facemapping.reality,1.9mb,43.2mb",
+        list[23] = "facemapping.reality,1.9 MB,43.2 MB",
 
 
 
-        list[25] = "gruener_bogen.usdz,_glb_?_mb,_usdz_?_mb",
-        list[26] = "ONOFFtable.usdz,_glb_?_mb,_usdz_?_mb",
+        list[25] = "gruener_bogen.usdz,_glb_?_MB,_usdz_?_MB",
+        list[26] = "ONOFFtable.usdz,_glb_?_MB,_usdz_?_MB",
 
         console.log(list);
 
@@ -151,7 +152,7 @@
         console.log("ready!");
 
 
-        alert("Preview Version: V3 \n\nbitte screenshots machen, merci");
+        alert("Preview Version: V4 \n\nbitte screenshots machen, merci");
         //sonstiger Apple check:
 
         /* 
