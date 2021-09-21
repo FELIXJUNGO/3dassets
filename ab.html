@@ -22,42 +22,54 @@
 
     console.log(objectNmbr);
     if (objectNmbr) {
-        if (objectNmbr < 20 || objectNmbr > 23) {
+        if (objectNmbr < 20 || objectNmbr > 24) {
             alert("falscher Link! - versuche es mit https://www.kueng-caputo.ch/ab.html?o=21");
         }
     }
 
     let list = [];
 
-    //Poster 2:
-    list[1] = "backsteinlampe.reality,4.9MB,8.3MB",
-        list[2] = "sandhocker.reality,_glb_?_MB,_usdz_?_MB",
-        list[3] = "sandhocker_1.usdz,_glb_?_MB,_usdz_?_MB",
-        list[4] = "sandhocker_2.usdz,_glb_?_MB,_usdz_?_MB",
-        list[5] = "sandhocker_3.usdz,_glb_?_MB,_usdz_?_MB",
+        //Poster 1: Von links nach rechts:
+        // Arbeitsname:
+        list[12] = "backsteinlampe.reality,0.0 MB,0.0 MB",
+        // Arbeitsname:
+        list[7] = "sandhocker.reality,0.0 MB,0.0 MB",
+        // Arbeitsname:
+        list[8] = "sandhocker_1.usdz,0.0 MB,0.0 MB",
+        // Arbeitsname:
+        list[9] = "sandhocker_2.usdz,0.0 MB,0.0 MB",
+        // Arbeitsname:
+        list[10] = "sandhocker_3.usdz,0.0 MB,0.0 MB",
 
 
-        //Poster 1:
+        //Poster 1: Von links nach rechts:
+        // Arbeitsname:
+        list[1] = "??.usdz,0.0 MB,0.0 MB",
+        // Arbeitsname:
+        list[2] = "??.usdz,0.0 MB,0.0 MB",
+        // Arbeitsname:
+        list[3] = "??.usdz,0.0 MB,0.0 MB",
+        // Arbeitsname:
+        list[4] = "Silo_Hocker_1.usdz,0.0 MB,0.0 MB",
+        // Arbeitsname:
+        list[5] = "sandhocker_2.usdz,0.0 MB,0.0 MB",
+        // Arbeitsname:
+        list[6] = "sandhocker_3.usdz,0.0 MB,0.0 MB",
 
-        list[6] = "teppich1.usdz",
-        list[7] = "silo_tisch_sml.usdz",
-        list[8] = "Steinlampe.usdz",
-        list[9] = "Silo_Hocker_1.usdz",
 
-
-        //Wallpaper QR1: Fendi Palmen:
-        list[22] = "backsteinlampe.reality,4.9 MB,8.3 MB",
+        //Wallpaper QR1: Backsteinlampen:
+        list[22] = "KuengCaputo_CosaPensi1_2020.reality,4.9 MB,8.1 MB",
         //Wallpaper QR2: Blauer Sandhocker:
-        list[21] = "sandhocker.reality,2 MB,5.9 MB",
+        list[21] = "KuengCaputo_SandChair_2012.reality,2 MB,5.9 MB",
         //Wallpaper QR3: Gruener Bogen //Evt. Fendi Pult später
-        list[20] = "gruener_bogen.reality,11.6 MB,22.5 MB",
+        list[23] = "KuengCaputo_CosaPensi2_2020.reality,5.1 MB,13 MB",
         //Wallpaper QR4: Facemapping
-        list[23] = "facemapping.reality,1.9 MB,43.2 MB",
+        list[24] = "Fendi_KuengCaputo_RomanMolds_2019.reality,13.7 MB,8.1 MB",
 
 
-
-        list[25] = "gruener_bogen.usdz,_glb_?_MB,_usdz_?_MB",
-        list[26] = "ONOFFtable.usdz,_glb_?_MB,_usdz_?_MB",
+        // Index aller Objekte:
+        list[100] = "gruener_bogen.usdz,_glb_?_MB,_usdz_?_MB",
+        list[100] = "ONOFFtable.usdz,_glb_?_MB,_usdz_?_MB",
 
         console.log(list);
 
@@ -152,7 +164,7 @@
         console.log("ready!");
 
 
-        alert("Preview Version: V4 \n\nbitte screenshots machen, merci");
+        //alert("Preview Version: V5 \n\nbitte screenshots machen, merci");
         //sonstiger Apple check:
 
         /* 
@@ -163,13 +175,13 @@
         console.log(navigator.userAgent);
         if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
 
-            alert("Die Seite wird aufgerufen mit einem iPhone: richtig?\n \n" + navigator.userAgent);
+            //alert("Die Seite wird aufgerufen mit einem iPhone: richtig?\n \n" + navigator.userAgent);
 
             const a = document.createElement("a");
             if (a.relList.supports("ar")) {
-                alert("iOS AR sollte auf diesem Handy funktionieren");
+                //alert("iOS AR sollte auf diesem Handy funktionieren");
             } else {
-                alert("kein Support fuer AR, mal schauen ob es trotzdem geht...?");
+                //alert("kein Support fuer AR, mal schauen ob es trotzdem geht...?");
                 createAndroidIntro("fullON");
                 return;
             }
@@ -180,7 +192,7 @@
             }
             createiOSIntro("fullON");
         } else {
-            alert("Die Seite wird aufgerufen mit einem Android Mobile Phone: richtig?\n \n" + navigator.userAgent);
+            //alert("Die Seite wird aufgerufen mit einem Android Mobile Phone: richtig?\n \n" + navigator.userAgent);
             // Android
             if (!objectNmbr) {
                 createIndex("android");
