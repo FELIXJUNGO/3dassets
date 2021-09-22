@@ -90,16 +90,6 @@
         list[101] = "KuengCaputo_TooHardToBeTrue_2014.usdz,2.3 MB,3.1 MB",
         list[102] = "KuengCaputo_SandChair_2012.reality,2.0 MB,1.8 MB",
         list[103] = "teppich1.usdz,2.4 MB,2.4 MB",
-        list[104] = "asd",
-        list[105] = "asd",
-        list[106] = "asd",
-        list[107] = "asd",
-        list[108] = "asd",
-        list[109] = "asd",
-        list[110] = "asd",
-        list[111] = "asd",
-        list[112] = "asd",
-        list[113] = "asd",
 
         console.log(list);
 
@@ -133,12 +123,31 @@
         }
     };
 
+    share = function(seriename, datumasd, indexnummer) {
+
+        const a = seriename;
+        const b = datumasd;
+        const c = indexnummer;
+        const data = {
+            text: "Kueng Caputo: " + a + ", " + b,
+            url: 'https://kuengcapasdh/ab.html?o=' + c,
+        }
+        if (navigator.share) {
+        navigator.share(data)
+            .then(() => console.log('Successful share'))
+            .catch((error) => log('Error sharing', error));
+        } else {
+//        alert("use the share menu after opening the file");
+        }
+    }
+
 
     createiOSIntro = function (target) {
         let objectNameiOS = list[objectNmbr].split(',')[0];
         let objectSizeiOS = list[objectNmbr].split(',')[2];
         let objectName = list[objectNmbr].split('.')[0];
-        console.log(objectName);
+        let objectProperties = objectName.split('_');
+        
         var iosLink = document.createElement("a");
         //iosLink.type = "text/css";
         iosLink.rel = "ar";
@@ -149,9 +158,12 @@
         if (target == "index") {
             $("#" + target).append('<div class="fileInIndex" id="' + objectNmbr + '"></div>');
             $("#" + objectNmbr).append(iosLink);
+            $("#" + objectNmbr).append('<div class="sharebutton" onClick="share(\'' + objectProperties[1] + '\',\'' + objectProperties[2] + '\',\'' + objectNmbr + '\')"><span class="material-icons">ios_share</span><div>');
+            $("#" + objectNmbr).append('<div class="l"><f>' + objectProperties[1] + '</f></div><div class="r"><g>' + objectProperties[2] +'<br>' + objectSizeiOS + '</g></div>');
             return;
         }
         $("#" + target).append(iosLink);
+        $("#" + target).append('<div class="sharebutton" onClick="share(\'' + objectProperties[1] + '\',\'' + objectProperties[2] + '\',\'' + objectNmbr + '\')"><span class="material-icons">ios_share</span><div>');
         $("#" + target).append('<div id="click" class="click">click it</div><div id="size" class="size">' + objectSizeiOS + '</div>');
     }
 
@@ -159,17 +171,22 @@
         console.log(list[objectNmbr].split('.')[0] + target);
         let objectSizeGLB = list[objectNmbr].split(',')[1];
         let objectName = list[objectNmbr].split('.')[0];
+        let objectProperties = objectName.split('_');
         if (target == "index") {
-            $("#" + target).append('<div class="fileInIndex" id="' + objectNmbr + '"></div>');
+            $("#" + target).append('<div class="fileInIndex androidIndex" id="' + objectNmbr + '"></div>');
             $("#" + objectNmbr).append('<model-viewer src="ab/assets/' + objectName + '/' + objectName + '.glb" poster="ab/assets/' + objectName + '/' + objectName + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ios-src="ab/assets/' + objectName + '/' + objectName + '.usdz" ><button slot="ar-button" id="ar-button" onclick="fakeLoader(\'' + target + '\',' + objectNmbr + ')"><img class="imgClass" src="ab/assets/' + objectName + '/' + objectName + '.jpg"></button></model - viewer > ');
+            $("#" + objectNmbr).append('<div class="sharebutton fullOnShare" onClick="share(\'' + objectProperties[1] + '\',\'' + objectProperties[2] + '\',\'' + objectNmbr + '\')"><span class="material-icons">ios_share</span><div>');
+            $("#" + objectNmbr).append('<div class="l"><f>' + objectProperties[1] + '</f></div><div class="r"><g>' + objectProperties[2] +'<br>' + objectSizeGLB + '</g></div>');
             return;
         }
-        //direct intent link:
+
+        //direct intent link - geht leider nicht
         //$("#" + target).append('<a href="intent://arvr.google.com/scene-viewer/1.0?file=https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Avocado/glTF/Avocado.gltf#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url=https://developers.google.com/ar;end;"><img class="imgClass" src="ab/assets/' + objectName + '/' + objectName + '.jpg">Avocado</a>');
 
 
         $("#" + target).append('<model-viewer src="ab/assets/' + objectName + '/' + objectName + '.glb" poster="ab/assets/' + objectName + '/' + objectName + '.jpg" ar ar-modes="webxr scene-viewer" loading="eager" reveal="auto" environment-image="neutral" camera-controls ios-src="ab/assets/' + objectName + '/' + objectName + '.usdz"><button slot="ar-button" id="ar-button" onclick="fakeLoader(\'' + target + '\',' + objectNmbr + ')"><img class="imgClass" src="ab/assets/' + objectName + '/' + objectName + '.jpg"></button></model - viewer > ');
         $("#" + target).append('<div id="click" class="click">click it</div>');
+        $("#" + target).append('<div class="sharebutton fullOnShare" onClick="share(\'' + objectProperties[1] + '\',\'' + objectProperties[2] + '\',\'' + objectNmbr + '\')"><span class="material-icons">ios_share</span><div>');
         $("#" + target).append('<div id="size" class="size">' + objectSizeGLB + '<br><span class="material-icons">download</span></div>');
     }
 
@@ -207,7 +224,11 @@
         if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
 
             //alert("Die Seite wird aufgerufen mit einem iPhone: richtig?\n \n" + navigator.userAgent);
-
+            // iPhone
+            if (!objectNmbr) {
+                createIndex("iphone");
+                return;
+            }
             const a = document.createElement("a");
             if (a.relList.supports("ar")) {
                 //alert("iOS AR sollte auf diesem Handy funktionieren");
@@ -216,11 +237,7 @@
                 createAndroidIntro("fullON");
                 return;
             }
-            // iPhone
-            if (!objectNmbr) {
-                createIndex("iphone");
-                return;
-            }
+
             createiOSIntro("fullON");
         } else {
             //alert("Die Seite wird aufgerufen mit einem Android Mobile Phone: richtig?\n \n" + navigator.userAgent);
@@ -231,12 +248,6 @@
             }
             createAndroidIntro("fullON");
         }
-        /*         } else {
-                    // Desktop
-                    alert("desktop!");
-                    $("#errorDiv").removeClass("invisible");
-                    //alert("Desktop:" + navigator.userAgent);
-                } */
     });
 
 
