@@ -58,6 +58,12 @@ p {
     width: 42%;
     padding: 36px;
     float: left;
+    position: relative;
+}
+
+.androidIndex {
+    height: 500px;
+    margin-bottom: 10%;
 }
 
 .selected {
@@ -119,6 +125,50 @@ a {
     text-decoration: none;
 }
 
+f {
+    font-size: 1.5em;
+    font-weight: 900;
+}
+
+g {
+    font-size: 1.5em;
+    line-height: 1.5em;
+}
+
+h {
+    font-size: 1.5em;
+    line-height: 1.5em;
+}
+
+.l {
+    display: block;
+    text-align: left;
+    float: left;
+    margin-top: 2em;
+}
+
+.r {
+    display: block;
+    text-align: right;
+    margin-top: 2em;
+}
+
+.sharebutton {
+    padding: inherit;
+    margin-left: 0.4em;
+    margin-top: 0.4em;
+    font-size: 4em;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.fullOnShare {
+    margin-left: 0.6em !important;
+    margin-top: 0.8em !important;
+    font-size: 7em !important;
+}
+
 .imgClass {
     width: 100%;
     height: 100%;
@@ -130,15 +180,19 @@ a {
     object-fit: cover;
 }
 
+.modelViewerIndex {
+    position: unset !important;
+}
 
 #ar-button {
-    position: absolute;
     left: 0%;
     top: 0%;
     height: 100%;
     width: 100%;
     background-size: contain;
 } 
+
+
  
 #ar-button:active {
     background-color: #E8EAED;
