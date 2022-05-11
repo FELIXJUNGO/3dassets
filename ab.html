@@ -28,23 +28,6 @@
     }
 
 
-
-    /*            //Poster 1: Von links nach rechts:
-            // Arbeitsname:
-            list[1] = "Fendi_KuengCaputo_RomanMolds_2019_p1.reality,1.6 MB,2.2 MB",
-            // Arbeitsname:
-            list[2] = "Fendi_KuengCaputo_RomanMolds_2019_p2.reality,1.6 MB,2.2 MB",
-            // Arbeitsname:
-            list[3] = "Fendi_KuengCaputo_RomanMolds_2019_p1.reality,1.6 MB,2.2 MB",
-            // Arbeitsname:
-            list[4] = "Fendi_KuengCaputo_RomanMolds_2019_p2.reality,1.6 MB,2.2 MB",
-            // Arbeitsname:
-            list[5] = "Fendi_KuengCaputo_RomanMolds_2019_p1.reality,1.6 MB,2.2 MB",
-            // Arbeitsname:
-            list[6] = "Fendi_KuengCaputo_RomanMolds_2019_p2.reality,1.6 MB,2.2 MB",
-    
-     */
-
     let list = [];
 
     //Poster 2: Von links nach rechts:
@@ -123,7 +106,7 @@
         }
     };
 
-    share = function(seriename, datumasd, indexnummer) {
+    share = function (seriename, datumasd, indexnummer) {
 
         const a = seriename;
         const b = datumasd;
@@ -133,11 +116,11 @@
             url: 'https://kueng-caputo.ch/ab.html?o=' + c,
         }
         if (navigator.share) {
-        navigator.share(data)
-            .then(() => console.log('Successful share'))
-            .catch((error) => log('Error sharing', error));
+            navigator.share(data)
+                .then(() => console.log('Successful share'))
+                .catch((error) => log('Error sharing', error));
         } else {
-//        alert("use the share menu after opening the file");
+            //        alert("use the share menu after opening the file");
         }
     }
 
@@ -147,7 +130,7 @@
         let objectSizeiOS = list[objectNmbr].split(',')[2];
         let objectName = list[objectNmbr].split('.')[0];
         let objectProperties = objectName.split('_');
-        
+
         var iosLink = document.createElement("a");
         //iosLink.type = "text/css";
         iosLink.rel = "ar";
@@ -159,7 +142,7 @@
             $("#" + target).append('<div class="fileInIndex" id="' + objectNmbr + '"></div>');
             $("#" + objectNmbr).append(iosLink);
             $("#" + objectNmbr).append('<div class="sharebutton" onClick="share(\'' + objectProperties[1] + '\',\'' + objectProperties[2] + '\',\'' + objectNmbr + '\')"><span class="material-icons">ios_share</span><div>');
-            $("#" + objectNmbr).append('<div class="l"><f>' + objectProperties[1] + '</f></div><div class="r"><g>' + objectProperties[2] +'<br>' + objectSizeiOS + '</g></div>');
+            $("#" + objectNmbr).append('<div class="l"><f>' + objectProperties[1] + '</f></div><div class="r"><g>' + objectProperties[2] + '<br>' + objectSizeiOS + '</g></div>');
             return;
         }
         $("#" + target).append(iosLink);
@@ -176,7 +159,7 @@
             $("#" + target).append('<div class="fileInIndex androidIndex" id="' + objectNmbr + '"></div>');
             $("#" + objectNmbr).append('<model-viewer src="ab/assets/' + objectName + '/' + objectName + '.glb" poster="ab/assets/' + objectName + '/' + objectName + '.jpg" ar ar-modes="webxr scene-viewer" reveal = "interaction" environment - image="neutral" camera-controls ios-src="ab/assets/' + objectName + '/' + objectName + '.usdz" ><button slot="ar-button" id="ar-button" onclick="fakeLoader(\'' + target + '\',' + objectNmbr + ')"><img class="imgClass" src="ab/assets/' + objectName + '/' + objectName + '.jpg"></button></model - viewer > ');
             $("#" + objectNmbr).append('<div class="sharebutton fullOnShare" onClick="share(\'' + objectProperties[1] + '\',\'' + objectProperties[2] + '\',\'' + objectNmbr + '\')"><span class="material-icons">ios_share</span><div>');
-            $("#" + objectNmbr).append('<div class="l"><f>' + objectProperties[1] + '</f></div><div class="r"><g>' + objectProperties[2] +'<br>' + objectSizeGLB + '</g></div>');
+            $("#" + objectNmbr).append('<div class="l"><f>' + objectProperties[1] + '</f></div><div class="r"><g>' + objectProperties[2] + '<br>' + objectSizeGLB + '</g></div>');
             return;
         }
 
